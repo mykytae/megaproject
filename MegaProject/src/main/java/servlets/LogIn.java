@@ -1,5 +1,7 @@
 package servlets;
 
+import models.User;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,8 +15,9 @@ import java.io.IOException;
 public class LogIn extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/views/index.jsp");
-        dispatcher.forward(req, resp);
+        User user = new User(5,"Andrew",1234567);
+        req.setAttribute("userList", user.getUserList(user));
+        req.getRequestDispatcher("Admin.jsp").forward(req, resp);
     }
 
 }
