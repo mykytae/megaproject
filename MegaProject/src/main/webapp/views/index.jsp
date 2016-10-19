@@ -3,7 +3,6 @@
 
 <head>
     <title>MEGAPROJECT</title>
-
     <style type="text/css">
         .block1 {
             width: 200px;
@@ -16,6 +15,7 @@
             margin-left: -100px;>}
 
     </style>
+
 
 </head>
 
@@ -36,7 +36,7 @@
     </form>
 
     <p>
-    <form>
+    <form action="/megaproject/admin" method="get">
         <input type ="submit" name="submit" value="Ok">
     </form>
     <input type ="reset" name="reset" value="Clean">

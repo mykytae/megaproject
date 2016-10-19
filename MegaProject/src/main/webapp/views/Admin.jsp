@@ -19,17 +19,23 @@
         <td>Bank Account</td>
     </tr>
 
-    <c: forEach="${userList}" var="user" varStatus="status">
+    <c:forEach  var="u" items="${userList}" >
     <input type="checkbox">
     <tr>
-        <td>${user.Id}</td>
-        <td>${user.Name}</td>
-        <td>${user.BankAccount}</td>
+        <td>
+            "${u.Id}"
+        </td>
+        <td>
+            "${u.User}"
+        </td>
+        <td>
+            <c:out value="${u.BankAccount}"/>
+        </td>
     </tr>
     <form>
         <input type="submit" value="Change">
     </form>
-    </c:>
+    </c:forEach>
 </table>
 
 </body>

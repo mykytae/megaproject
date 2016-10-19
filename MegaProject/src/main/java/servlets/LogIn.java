@@ -17,7 +17,7 @@ public class LogIn extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = new User(5,"Andrew",1234567);
         req.setAttribute("userList", user.getUserList(user));
-        req.getRequestDispatcher("Admin.jsp").forward(req, resp);
+        req.getRequestDispatcher("views/Admin.jsp").forward(req, resp);
     }
 
 }
