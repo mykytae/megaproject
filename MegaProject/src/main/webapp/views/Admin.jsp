@@ -12,31 +12,36 @@
     <title>Administration Page</title>
 </head>
 <body>
+<h1>Administration Menu</h1>
 <table border="2">
     <tr>
+        <td>Add to Admin</td>
         <td>ID</td>
         <td>Name</td>
         <td>Bank Account</td>
     </tr>
-
-    <c:forEach  var="u" items="${userList}" >
-    <input type="checkbox">
-    <tr>
-        <td>
-            "${u.Id}"
-        </td>
-        <td>
-            "${u.User}"
-        </td>
-        <td>
-            <c:out value="${u.BankAccount}"/>
-        </td>
-    </tr>
-    <form>
-        <input type="submit" value="Change">
-    </form>
+    <c:set var="List" value="${userList}"></c:set>
+    <c:forEach items="${List}" var="u" varStatus="status" >
+        <tr>
+            <td>
+                <input type="checkbox">
+            </td>
+            <td>
+                <c:out value="${u.id}"></c:out>
+            </td>
+            <td>
+                <c:out value="${u.user}"></c:out>
+            </td>
+            <td>
+                <c:out value="${u.bankAccount}"/>
+            </td>
+            <td>
+                <form>
+                    <input type="submit" value="Change">
+                </form>
+            </td>
+        </tr>
     </c:forEach>
 </table>
-
 </body>
 </html>

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" pageEncoding="UTF-8" session="true"%>
 <html>
 
@@ -12,42 +13,44 @@
             left: 50%;
             position: absolute;
             margin-top: -100px;
-            margin-left: -100px;>}
+            margin-left: -100px;}
 
     </style>
-
-
 </head>
 
 <body>
-<style>
+
+<style type="text/css">
     body {background: url(images/background.jpg);}
 </style>
+
 <p><img src="images\p2r.png" alt="title" width="100%" height=320px0px></p>
 
 <div align = "center" class= "block1">
     <form>
         <p>
-            <strong>Login:</strong>
+            <span>Login:</span>
             <input type="text" name="Login">
-            <strong>Password:</strong>
+            <span>Password:</span>
             <input type="password" name="Password">
         </p>
     </form>
 
     <p>
-    <form action="/megaproject/admin" method="get">
+    <form action="${pageContext.servletContext.contextPath}/megaproject/admin" method="get">
         <input type ="submit" name="submit" value="Ok">
     </form>
     <input type ="reset" name="reset" value="Clean">
     </p>
 
-    <form>
+    <form action="${pageContext.servletContext.contextPath}/megaproject/signup">
         <p>
             <input type="submit" name="SignUp" value="Sign Up">
         </p>
     </form>
 </div>
+
+
 </body>
 
 </html>

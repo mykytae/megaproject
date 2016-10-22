@@ -9,6 +9,7 @@ import java.util.List;
 public class User {
     public String User;
     public String Pass;
+
     public  int Id;
     public long BankAccount;
     static List<User> users = new ArrayList<User>();
@@ -23,5 +24,29 @@ public class User {
     public List<User> getUserList(User user){
         users.add(user);
         return users;
+    }
+
+    public String getUser() {
+        return User;
+    }
+
+    public void setUser(String user) {
+        User = user;
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
+
+    public long getBankAccount() {
+        return BankAccount;
+    }
+
+    public void setBankAccount(long bankAccount) {
+        BankAccount = bankAccount;
     }
 }
