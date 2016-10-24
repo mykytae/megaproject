@@ -5,51 +5,40 @@
 <head>
 
 <title>MEGAPROJECT</title>
-
-    <title>MEGAPROJECT</title>
-    <style type="text/css">
-        .block1 {
-            width: 200px;
-            background: #ccc;
-            border: solid 1px black;
-            top: 50%;
-            left: 50%;
-            position: absolute;
-            margin-top: -100px;
-            margin-left: -100px;}
+    <style>
+    <%@ include file="css/style.css" %>
     </style>
 </head>
 
 <body>
 
-<style type="text/css">
-    body {background: url(images/background.jpg);}
-</style>
+<div class="login" >
+    <h1>Megaproject Payments</h1>
+    <div class="heading">
+        <h2>Sign in</h2>
+    <form action="#">
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+            <input type="text" class="form-control" placeholder="Username">
+        </div>
 
-<p><img src="images\p2r.png" alt="title" width="100%" height=320px0px></p>
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+            <input type="password" class="form-control" placeholder="Password">
+        </div>
 
-<div align = "center" class= "block1">
-    <form>
-        <p>
-            <span>Login:</span>
-            <input type="text" name="Login">
-            <span>Password:</span>
-            <input type="password" name="Password">
-        </p>
+        <form action="${pageContext.servletContext.contextPath}/admin" method="get">
+            <button type="submit" class="float">Ok</button>
+        </form>
+        <form>
+            <button type="submit" class="float">Clean</button>
+        </form>
+
+        <form action="${pageContext.servletContext.contextPath}/signup">
+            <button type="submit" class="float">Sign Up</button>
+        </form>
     </form>
-
-    <p>
-    <form action="${pageContext.servletContext.contextPath}/admin" method="get">
-        <input type ="submit" name="submit" value="Ok">
-    </form>
-    <input type ="reset" name="reset" value="Clean">
-    </p>
-
-    <form action="${pageContext.servletContext.contextPath}/signup">
-        <p>
-            <input type="submit" name="SignUp" value="Sign Up">
-        </p>
-    </form>
+    </div>
 </div>
 
 
