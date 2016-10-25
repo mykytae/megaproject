@@ -13,7 +13,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(String login) {
-        User result = new User(login, "7110eda4d09e062aa5e4a390b0a572ac0d2c0220");
+        User result = new User(login, "1234");
         return result;
     }
 }

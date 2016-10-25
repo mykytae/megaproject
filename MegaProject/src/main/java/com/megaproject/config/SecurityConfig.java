@@ -32,25 +32,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // включаем защиту от CSRF атак
+
         http.csrf()
-                .disable()
+                .disable();
                 // указываем правила запросов
                 // по которым будет определятся доступ к ресурсам и остальным данным
+        http
                 .authorizeRequests()
-                .antMatchers("/resources/**", "/**").permitAll()
-                .anyRequest().permitAll()
-                .and();
+                    .antMatchers("/megaproject/", "/signup").permitAll()
+                    .antMatchers("/admin", "/user").hasRole("ADMIN")
+                    .antMatchers("/user").hasRole("USER")
+                    .anyRequest().permitAll()
+                    .and();
+
 
         http.formLogin()
                 // указываем страницу с формой логина
                 .loginPage("/index")
-                // указываем action с формы логина
-                .loginProcessingUrl("/")
                 // указываем URL при неудачном логине
                 .failureUrl("/index?error")
                 // Указываем параметры логина и пароля с формы логина
-                .usernameParameter("Login")
-                .passwordParameter("Password")
+                .usernameParameter("login")
+                .passwordParameter("password")
                 // даем доступ к форме логина всем
                 .permitAll();
 
