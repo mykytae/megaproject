@@ -1,7 +1,9 @@
 package com.megaproject.config;
 
+import com.megaproject.service.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -32,4 +34,12 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
         return  resolver;
 
     }
+
+    @Bean
+    public UserDetailsService getUserDetailsService(){
+        return  new UserDetailsServiceImpl();
+    }
+
+
+
 }

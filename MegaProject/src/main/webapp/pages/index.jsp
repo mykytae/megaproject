@@ -19,12 +19,12 @@
     <form action="#">
         <div class="input-group input-group-lg">
             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-            <input type="text" class="form-control" placeholder="Username">
+            <input type="text" class="form-control" placeholder="Username" name="Login">
         </div>
 
         <div class="input-group input-group-lg">
             <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-            <input type="password" class="form-control" placeholder="Password">
+            <input type="password" class="form-control" placeholder="Password" name="Password">
         </div>
 
         <form action="${pageContext.servletContext.contextPath}/admin" method="get">
