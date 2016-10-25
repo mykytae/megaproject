@@ -1,6 +1,7 @@
 package com.megaproject.service;
 
-import org.springframework.security.core.userdetails.User;
+
+import com.megaproject.entity.User;
 
 /**
  * Created by nik on 25.10.2016.
