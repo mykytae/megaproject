@@ -1,14 +1,9 @@
-
-<%--
-  Created by IntelliJ IDEA.
-  User: nik
-  Date: 22.10.2016
-  Time: 11:36
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE html>
 <html>
+
 <head>
     <title>Registration</title>
 
@@ -25,43 +20,61 @@
                 span.innerHTML=" ";
             }
         }
-
     </script>
 
+    <style>
+        <%@ include file="css/style.css" %>
+    </style>
+
 </head>
+
 <body>
-    <h1>Sign Up on MEGAPROJECT Payments</h1>
-    <p>
-        <h2>Name</h2>
-        <input type="input" name="name">
-    </p>
-    <p>
-        <h2>Surname</h2>
-        <input type="input" name="surname">
-    </p>
-    <p>
-        <h2>Email</h2>
-        <input type="input" name="email">
-    </p>
+    <div class="login">
+        <div class="heading">
+            <h2> Megaproject Sign Up</h2>
 
-    <p>
-        <h2>Create your password</h2>
-        <input type="password" id="pass">
-    </p>
-    <p>
-        <h2>Repeate password</h2>
-        <input type="password" id="repeatePass" onchange="srav()">
-        <span id="span"></span>
-    </p>
+            <form action="#">
 
-    <p>
-        <form action="${pageContext.servletContext.contextPath}/">
-            <input type="submit" value="Cancle">
-        </form>
-        <form action="${pageContext.servletContext.contextPath}/megaproject/home">
-            <input type="submit" value="Ok">
-        </form>
-    </p>
+                <div class="input-group input-group-lg">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input type="text" class="form-control" placeholder="Create your login">
+            </div>
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input type="text" class="form-control" placeholder="Your name">
+            </div>
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input type="text" class="form-control" placeholder="Your surname">
+            </div>
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input type="text" class="form-control" placeholder="Your email adress">
+            </div>
 
+
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input type="password" class="form-control" id="pass" placeholder="Create your password">
+            </div>
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input type="password" class="form-control" placeholder="Repeate your password" id="repeatePass" onchange="srav()">
+            </div> <span id="span" class="error"></span>
+
+            <form action="${pageContext.servletContext.contextPath}/register">
+                <button type="submit" value="Ok" class="float">Ok</button>
+            </form>
+
+
+            <p>
+                <form action="${pageContext.servletContext.contextPath}/">
+                     <button type="submit" class="float">Cancle</button>
+                 </form>
+            </p>
+
+            </form>
+        </div>
+     </div>
 </body>
 </html>
