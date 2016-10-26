@@ -107,6 +107,9 @@ body, input, button {
   -webkit-transform: translateY(-3px);
   transform: translateY(-3px);
 }
+.error{
+  color: #ff5f58;
+}
 
 /* Large Devices, Wide Screens */
 @media only screen and (max-width: 1200px) {

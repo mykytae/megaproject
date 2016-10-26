@@ -8,27 +8,19 @@ import java.util.List;
  */
 public class User {
     public String login;
-    public String pass;
+    public String password;
+    public String name;
+    public String surname;
+    public String role;
+    public String bankAccount;
 
-    public int id;
-    public long bankAccount;
-    static List<User> users = new ArrayList<User>();
-
-    public User(String login, String pass) {
+    public User(String login, String password, String name, String surname, String role, String bankAccount) {
         this.login = login;
-        this.pass = pass;
-    }
-
-    public User(int id, String login, long bankAccount){
-        this.id=id;
-        this.login=login;
-        this.bankAccount=bankAccount;
-
-    }
-
-    public List<User> getUserList(User user){
-        users.add(user);
-        return users;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.role = role;
+        this.bankAccount = bankAccount;
     }
 
     public String getLogin() {
@@ -39,27 +31,54 @@ public class User {
         this.login = login;
     }
 
-    public String getPass() {
-        return pass;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public int getId() {
-        return id;
+    public String getName() {
+        return name;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public long getBankAccount() {
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getBankAccount() {
         return bankAccount;
     }
 
-    public void setBankAccount(long bankAccount) {
+    public void setBankAccount(String bankAccount) {
         this.bankAccount = bankAccount;
     }
+
+    public static List<User> getUserList(User user) {
+        List<User> list = new ArrayList<>();
+        list.add(user);
+        return list;
+    }
+
 }
+
+
+
+

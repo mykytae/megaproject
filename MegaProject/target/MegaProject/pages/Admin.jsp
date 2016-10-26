@@ -18,7 +18,9 @@
         <td>Add to Admin</td>
         <td>ID</td>
         <td>Name</td>
+        <td>Surname</td>
         <td>Bank Account</td>
+        <td>Role</td>
     </tr>
     <c:set var="List" value="${userList}"></c:set>
     <c:forEach items="${List}" var="u" varStatus="status" >
@@ -27,13 +29,19 @@
                 <input type="checkbox">
             </td>
             <td>
-                <c:out value="${u.id}"></c:out>
+                <c:out value="${u.login}"></c:out>
             </td>
             <td>
-                <c:out value="${u.user}"></c:out>
+                <c:out value="${u.name}"></c:out>
+            </td>
+            <td>
+                <c:out value="${u.surname}"/>
             </td>
             <td>
                 <c:out value="${u.bankAccount}"/>
+            </td>
+            <td>
+                <c:out value="${u.role}"/>
             </td>
             <td>
                 <form>

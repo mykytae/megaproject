@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 
 /**
@@ -20,11 +21,16 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    UserDetailsServiceImpl userDetailsService;
+     private UserDetailsServiceImpl userDetailsService;
+
 
     @Autowired
     public void registerGlobalAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth
+                //.inMemoryAuthentication()
+                //.withUser("root")
+                //.password("root")
+                //.roles("ADMIN");
                 .userDetailsService(userDetailsService);
 
     }
@@ -34,38 +40,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // включаем защиту от CSRF атак
 
         http.csrf()
-                .disable();
+              .disable();
                 // указываем правила запросов
                 // по которым будет определятся доступ к ресурсам и остальным данным
         http
                 .authorizeRequests()
-                    .antMatchers("/megaproject/", "/signup").permitAll()
-                    .antMatchers("/admin", "/user").hasRole("ADMIN")
-                    .antMatchers("/user").hasRole("USER")
-                    .anyRequest().permitAll()
+                    .antMatchers("/megaproject","/login","/signup").permitAll()
+                    .antMatchers("/admin").hasRole("ADMIN")
+                    .anyRequest().authenticated()
                     .and();
 
 
         http.formLogin()
+                .loginPage("/")
                 // указываем страницу с формой логина
-                .loginPage("/index")
+                .defaultSuccessUrl("/admin")
+                .loginProcessingUrl("/j_spring_security_check")
                 // указываем URL при неудачном логине
-                .failureUrl("/index?error")
+                .failureUrl("/login?error=true")
                 // Указываем параметры логина и пароля с формы логина
                 .usernameParameter("login")
                 .passwordParameter("password")
                 // даем доступ к форме логина всем
                 .permitAll();
 
-        http.logout()
-                // разрешаем делать логаут всем
-                .permitAll()
-                // указываем URL логаута
-                .logoutUrl("/logout")
-                // указываем URL при удачном логауте
-                .logoutSuccessUrl("/login?logout")
-                // делаем не валидной текущую сессию
-                .invalidateHttpSession(true);
 
     }
 }
