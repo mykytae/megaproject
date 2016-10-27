@@ -108,7 +108,7 @@ body, input, button {
   transform: translateY(-3px);
 }
 .error{
-  color: #ff5f58;
+  color: rgba(255, 26, 28, 0.95);
 }
 
 /* Large Devices, Wide Screens */
