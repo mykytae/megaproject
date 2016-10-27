@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="H2 - MegaProject.mv.db">
+  <database-model serializer="dbm" rdbms="H2" format-version="2.6">
+    <database id="1" name="MEGAPROJECT.MV.DB">
+      <visible>1</visible>
+    </database>
+    <schema id="2" parent="1" name="INFORMATION_SCHEMA"/>
+    <schema id="3" parent="1" name="PUBLIC">
+      <visible>1</visible>
+    </schema>
+    <table id="4" parent="3" name="USER"/>
+    <column id="5" parent="4" name="ID">
+      <mandatory>1</mandatory>
+      <data-type>INTEGER(10)|4</data-type>
+      <sequence-identity>1</sequence-identity>
+      <default-expression>(NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_CF834998_23CA_4FAA_8F5B_99E93D148575)</default-expression>
+    </column>
+    <column id="6" parent="4" name="LOGIN">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR(30)|12</data-type>
+    </column>
+    <column id="7" parent="4" name="NAME">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR(30)|12</data-type>
+    </column>
+    <column id="8" parent="4" name="SURNAME">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR(30)|12</data-type>
+    </column>
+    <column id="9" parent="4" name="EMAIL">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR(60)|12</data-type>
+    </column>
+    <column id="10" parent="4" name="ROLE">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR(15)|12</data-type>
+    </column>
+    <column id="11" parent="4" name="PASSWORD">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR(30)|12</data-type>
+    </column>
+    <key id="12" parent="4" name="CONSTRAINT_2">
+      <name-surrogate>1</name-surrogate>
+      <columns>ID</columns>
+      <primary>1</primary>
+    </key>
+  </database-model>
+</dataSource>
