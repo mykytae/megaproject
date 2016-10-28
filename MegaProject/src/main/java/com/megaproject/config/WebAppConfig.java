@@ -4,6 +4,8 @@ import com.megaproject.service.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -40,6 +42,12 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
         return  new UserDetailsServiceImpl();
     }
 
+    @Bean
+    public JpaTransactionManager transactionManager() {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(new LocalContainerEntityManagerFactoryBean().getObject()); /*TODO: Поменять new LocalContainerEntityManagerFactoryBean() на entityManagerFactory() когда добавится бин*/
+        return transactionManager;
+    }
 
 
 }

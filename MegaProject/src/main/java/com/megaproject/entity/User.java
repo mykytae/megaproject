@@ -1,18 +1,28 @@
 package com.megaproject.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by nik on 17.10.2016.
  */
+@Entity
+@Table(name = "shops")
 public class User {
+    @GeneratedValue
+    private Integer id;
     public String login;
     public String password;
     public String name;
     public String surname;
     public String role;
     public String bankAccount;
+
+    public User(){
+    };
 
     public User(String login, String password, String name, String surname, String role, String bankAccount) {
         this.login = login;
@@ -21,6 +31,14 @@ public class User {
         this.surname = surname;
         this.role = role;
         this.bankAccount = bankAccount;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getLogin() {
