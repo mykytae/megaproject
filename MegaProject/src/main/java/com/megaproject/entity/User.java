@@ -1,37 +1,46 @@
 package com.megaproject.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Table;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by nik on 17.10.2016.
  */
+
+
 @Entity
-@Table(name = "shops")
+@Table(name="USER")
 public class User {
-    @GeneratedValue
-    private Integer id;
-    public String login;
-    public String password;
-    public String name;
-    public String surname;
-    public String role;
-    public String bankAccount;
-
-    public User(){
-    };
-
-    public User(String login, String password, String name, String surname, String role, String bankAccount) {
+    public User(String login, String password, String name, String surname, String role) {
         this.login = login;
         this.password = password;
         this.name = name;
         this.surname = surname;
         this.role = role;
-        this.bankAccount = bankAccount;
     }
+
+    @Id
+    @GeneratedValue
+    @Column(name="ID")
+    public int id;
+
+    @Column(name="LOGIN")
+    public String login;
+
+    @Column(name="PASSWORD")
+    public String password;
+
+    @Column(name="NAME")
+    public String name;
+
+    @Column(name="SURNAME")
+    public String surname;
+
+    @Column(name="ROLE")
+    public String role;
+
 
     public Integer getId() {
         return id;
@@ -79,14 +88,6 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    public String getBankAccount() {
-        return bankAccount;
-    }
-
-    public void setBankAccount(String bankAccount) {
-        this.bankAccount = bankAccount;
     }
 
     public static List<User> getUserList(User user) {

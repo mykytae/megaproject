@@ -19,7 +19,6 @@
         <td>ID</td>
         <td>Name</td>
         <td>Surname</td>
-        <td>Bank Account</td>
         <td>Role</td>
     </tr>
     <c:set var="List" value="${userList}"></c:set>
@@ -36,9 +35,6 @@
             </td>
             <td>
                 <c:out value="${u.surname}"/>
-            </td>
-            <td>
-                <c:out value="${u.bankAccount}"/>
             </td>
             <td>
                 <c:out value="${u.role}"/>
