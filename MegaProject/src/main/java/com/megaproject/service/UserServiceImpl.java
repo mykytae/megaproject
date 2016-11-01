@@ -41,11 +41,13 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
+    @Transactional
     public User findById(int id) {
         return userDao.findOne(id);
     }
 
     @Override
+    @Transactional
     public User getUser(String login, String password, String name, String surname, String role, String bankAccount) {
         return null;
     }
@@ -57,14 +59,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public User update(User user) throws UserNotFound {
         return null;
     }
 
     @Override
-    @Transactional
     public User findByLogin(String login) {
-       List<User> list = findAll();
+       List<User> list = userDao.findBylogin(login);
         for(User user : list ){
             if (user.getLogin().equals(login)){
                 return user;

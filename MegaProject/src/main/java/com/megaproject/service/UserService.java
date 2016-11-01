@@ -13,7 +13,7 @@ public interface UserService {
 
     public User create(User user);
     public User delete(int id) throws UserNotFound;
-    public List <User> findAll();
+    public List findAll();
     public User update(User user) throws UserNotFound;
     public User findById(int id);
     public User getUser (String login, String password, String name, String surname, String role, String bankAccount);

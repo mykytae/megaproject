@@ -13,13 +13,14 @@ import java.util.List;
 @Entity
 @Table(name="USER")
 public class User {
-    public User(String login, String password, String name, String surname, String role) {
-        this.login = login;
-        this.password = password;
-        this.name = name;
-        this.surname = surname;
-        this.role = role;
-    }
+
+    //public User(String login, String password, String name, String surname, String role) {
+        //this.login = login;
+       // this.password = password;
+       // this.name = name;
+       // this.surname = surname;
+       // this.role = role;
+   // }
 
     @Id
     @GeneratedValue
