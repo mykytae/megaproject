@@ -45,8 +45,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // по которым будет определятся доступ к ресурсам и остальным данным
         http
                 .authorizeRequests()
-                    .antMatchers("/megaproject","/login","/signup").permitAll()
+                    .antMatchers("/megaproject","/login","/signup","/register").permitAll()
                     .antMatchers("/admin").hasRole("ADMIN")
+                    .antMatchers("/home").hasRole("USER")
                     .anyRequest().authenticated()
                     .and();
 
@@ -55,6 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/")
                 // указываем страницу с формой логина
                 .defaultSuccessUrl("/admin")
+                .defaultSuccessUrl("/home")
                 .loginProcessingUrl("/j_spring_security_check")
                 // указываем URL при неудачном логине
                 .failureUrl("/login?error=true")

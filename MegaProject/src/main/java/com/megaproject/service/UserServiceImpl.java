@@ -24,7 +24,8 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public User create(User user) {
-        return userDao.save(user);
+        User createdUser = user;
+        return userDao.save(createdUser);
     }
 
     @Override
@@ -69,6 +70,17 @@ public class UserServiceImpl implements UserService {
        List<User> list = userDao.findBylogin(login);
         for(User user : list ){
             if (user.getLogin().equals(login)){
+                return user;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        List<User> list = userDao.findBylogin(email);
+        for(User user : list ){
+            if (user.getLogin().equals(email)){
                 return user;
             }
         }

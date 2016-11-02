@@ -16,6 +16,10 @@
     <h1>Megaproject Payments</h1>
     <div class="heading">
         <h2>Sign in</h2>
+        <p>
+            <span class="success">${success}</span>
+        </p>
+
 
         <c:url value="/j_spring_security_check" var="loginUrl" />
         <form action="${loginUrl}" method="post">

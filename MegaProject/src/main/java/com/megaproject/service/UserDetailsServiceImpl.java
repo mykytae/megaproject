@@ -19,6 +19,8 @@ import java.util.Set;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
+    public static int userIdLogin;
+
     @Autowired
     UserService userService;
 
@@ -30,6 +32,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if(user==null){
             return result;
         }
+
+        this.userIdLogin=user.getId();
 
         Set<GrantedAuthority> roles = new HashSet();
         roles.add(new SimpleGrantedAuthority(user.getRole()));

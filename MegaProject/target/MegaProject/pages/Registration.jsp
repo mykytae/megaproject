@@ -33,47 +33,47 @@
         <div class="heading">
             <h2> Megaproject Sign Up</h2>
 
-            <form action="#">
+                <form action="${pageContext.servletContext.contextPath}/register" method="post">
 
-                <div class="input-group input-group-lg">
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" class="form-control" placeholder="Create your login">
-            </div>
-            <div class="input-group input-group-lg">
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" class="form-control" placeholder="Your name">
-            </div>
-            <div class="input-group input-group-lg">
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" class="form-control" placeholder="Your surname">
-            </div>
-            <div class="input-group input-group-lg">
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" class="form-control" placeholder="Your email adress">
-            </div>
-
-
-            <div class="input-group input-group-lg">
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                <input type="password" class="form-control" id="pass" placeholder="Create your password">
-            </div>
-            <div class="input-group input-group-lg">
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                <input type="password" class="form-control" placeholder="Repeate your password" id="repeatePass" onchange="srav()">
-            </div> <span id="span" class="error"></span>
-
-            <form action="${pageContext.servletContext.contextPath}/register">
-                <button type="submit" value="Ok" class="float">Ok</button>
-            </form>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input type="text" class="form-control" placeholder="Create your login" name="login">
+                    </div>
+                    <span class="error">${errorLogin}</span>
+                    <div class="input-group input-group-lg">
+                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                         <input type="text" class="form-control" placeholder="Your name" name="name">
+                    </div>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input type="text" class="form-control" placeholder="Your surname" name="surname">
+                    </div>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input type="text" class="form-control" placeholder="Your email adress" name="email">
+                    </div>
+                    <span class="error">${errorEmail}</span>
 
 
-            <p>
-                <form action="${pageContext.servletContext.contextPath}/">
-                     <button type="submit" class="float">Cancle</button>
-                 </form>
-            </p>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input type="password" class="form-control" id="pass" placeholder="Create your password" name="password">
+                    </div>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                         <input type="password" class="form-control" placeholder="Repeate your password" id="repeatePass" onchange="srav()">
+                    </div> <span id="span" class="error"></span>
 
-            </form>
+
+                    <button type="submit" value="Ok" class="float">Ok</button>
+                </form>
+
+
+                     <p>
+                        <form action="${pageContext.servletContext.contextPath}/">
+                        <button type="submit" class="float">Cancle</button>
+                        </form>
+                    </p>
         </div>
      </div>
 </body>

@@ -14,13 +14,19 @@ import java.util.List;
 @Table(name="USER")
 public class User {
 
-    //public User(String login, String password, String name, String surname, String role) {
-        //this.login = login;
-       // this.password = password;
-       // this.name = name;
-       // this.surname = surname;
-       // this.role = role;
-   // }
+    public User(String login, String password, String name, String surname, String role, String email) {
+        this.login = login;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.role = role;
+        this.email= email;
+    }
+
+    public User(){
+
+    }
+
 
     @Id
     @GeneratedValue
@@ -42,12 +48,15 @@ public class User {
     @Column(name="ROLE")
     public String role;
 
+    @Column (name="EMAIL")
+    public String email;
 
-    public Integer getId() {
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -89,6 +98,14 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public static List<User> getUserList(User user) {

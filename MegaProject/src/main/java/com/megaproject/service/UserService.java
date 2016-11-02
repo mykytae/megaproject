@@ -18,6 +18,7 @@ public interface UserService {
     public User findById(int id);
     public User getUser (String login, String password, String name, String surname, String role, String bankAccount);
     public User findByLogin(String login);
+    public User findByEmail(String email);
 
 
 

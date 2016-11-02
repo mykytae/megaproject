@@ -111,6 +111,10 @@ body, input, button {
   color: rgba(255, 26, 28, 0.95);
 }
 
+.success{
+  color: rgba(94, 255, 110, 0.95);
+}
+
 /* Large Devices, Wide Screens */
 @media only screen and (max-width: 1200px) {
   .login {
