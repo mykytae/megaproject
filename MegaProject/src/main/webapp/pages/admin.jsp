@@ -11,8 +11,18 @@
 <head>
     <title>Administration Page</title>
 </head>
+
 <body>
+
 <h1>Administration Menu</h1>
+
+<p>
+    <c:url value="/logout" var="loginUrl" />
+    <form action="${loginUrl}">
+    <button type="submit">Logout</button>
+    </form>
+</p>
+
 <table border="2">
     <tr>
         <td>Add to Admin</td>

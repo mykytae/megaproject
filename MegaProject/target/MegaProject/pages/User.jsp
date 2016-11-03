@@ -1,10 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: nik
-  Date: 18.10.2016
-  Time: 12:03
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -13,6 +8,13 @@
 <body>
 
 <h1>Welcome to your account ${name} ${surname} !!</h1>
+
+<p>
+    <c:url value="/logout" var="loginUrl" />
+<form action="${loginUrl}">
+    <button type="submit">Logout</button>
+</form>
+</p>
 
 </body>
 </html>

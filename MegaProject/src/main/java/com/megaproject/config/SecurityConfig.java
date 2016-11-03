@@ -38,33 +38,37 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // включаем защиту от CSRF атак
-
-        http.csrf()
-              .disable();
+        //
+        http
+                .csrf()
+                    .disable()
                 // указываем правила запросов
                 // по которым будет определятся доступ к ресурсам и остальным данным
-        http
                 .authorizeRequests()
                     .antMatchers("/megaproject","/login","/signup","/register").permitAll()
                     .antMatchers("/admin").hasRole("ADMIN")
                     .antMatchers("/home").hasRole("USER")
+                    .antMatchers("/open").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
                     .anyRequest().authenticated()
-                    .and();
-
-
-        http.formLogin()
-                .loginPage("/")
+                    .and()
+                .formLogin()
+                    .loginPage("/")
                 // указываем страницу с формой логина
-                .defaultSuccessUrl("/admin")
-                .defaultSuccessUrl("/home")
-                .loginProcessingUrl("/j_spring_security_check")
+                    .defaultSuccessUrl("/open", true)
+                    .loginProcessingUrl("/j_spring_security_check")
                 // указываем URL при неудачном логине
-                .failureUrl("/login?error=true")
+                    .failureUrl("/login?error=true")
                 // Указываем параметры логина и пароля с формы логина
-                .usernameParameter("login")
-                .passwordParameter("password")
+                    .usernameParameter("login")
+                    .passwordParameter("password")
                 // даем доступ к форме логина всем
-                .permitAll();
+                    .permitAll()
+                    .and()
+                .logout()
+                    .permitAll()
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/login?logout")
+                    .invalidateHttpSession(true);
 
 
     }

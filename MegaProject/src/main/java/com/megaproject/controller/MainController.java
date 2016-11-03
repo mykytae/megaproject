@@ -30,8 +30,23 @@ public class MainController {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
-    @RequestMapping(value = "/admin", method= RequestMethod.GET)
+    @RequestMapping(value= "/open", method=RequestMethod.GET)
+    public ModelAndView openSession (){
+        ModelAndView model = new ModelAndView();
+        User user = userService.findById(userDetailsService.userIdLogin);
+        if(user.getRole().equals(ROLE_ADMIN)){
+            model.setViewName("redirect:/admin");
 
+        }
+        else if (user.getRole().equals(ROLE_USER)){
+            model.setViewName("redirect:/home");
+        }
+
+        return model;
+    }
+
+
+    @RequestMapping(value = "/admin", method= RequestMethod.GET)
     public ModelAndView userAdmin(){
         ModelAndView model = new ModelAndView();
         List userList = userService.findAll();
@@ -48,14 +63,15 @@ public class MainController {
 
     @RequestMapping(value = "/home", method= RequestMethod.GET)
     public ModelAndView Home (){
-        int userId = userDetailsService.userIdLogin; //берем id во время того как спринг секьюрити проверяет наш логин и пароль
+
         ModelAndView model = new ModelAndView();
-        User user = userService.findById(userId);
+
+        //userDetailsService.userIdLogin берем id во время того как спринг секьюрити проверяет наш логин и пароль
+        User user = userService.findById(userDetailsService.userIdLogin);
 
         model.addObject("name", user.getName() );
         model.addObject("surname", user.getSurname() );
         model.setViewName("user");
-
 
         return model ;
     }
@@ -72,7 +88,6 @@ public class MainController {
         User user = new User(login, password, name, surname, ROLE_USER, email);
         User userCheckLogin = userService.findByLogin(login);
         User userCheckEmail = userService.findByEmail(email);
-
 
         if (userCheckLogin==null && userCheckEmail==null ){
             model.addObject("errorLogin", "Your login already exsists!");
@@ -109,5 +124,4 @@ public class MainController {
 
     }
 
-    //
 }
