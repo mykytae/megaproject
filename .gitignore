@@ -1,8 +1,22 @@
-.idea/compiler.xml
-.idea/megaproject.iml
-.idea/misc.xml
-.idea/modules.xml
-.idea/vcs.xml
+# User-specific stuff:
 .idea/workspace.xml
-MegaProject/MegaProject.iml
-.idea/artifacts/MegaProject_war_exploded.xml.rej
+.idea/tasks.xml
+
+# Sensitive or high-churn files:
+.idea/dataSources.ids
+.idea/dataSources.xml
+.idea/dataSources.local.xml
+.idea/sqlDataSources.xml
+.idea/dynamic.xml
+.idea/uiDesigner.xml
+
+## File-based project format:
+*.iws
+
+## Plugin-specific files:
+
+# IntelliJ
+/out/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
