@@ -1,6 +1,7 @@
-package com.megaproject.service;
+package com.megaproject.service.impl;
 
 import com.megaproject.entity.User;
+import com.megaproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

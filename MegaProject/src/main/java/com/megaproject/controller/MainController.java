@@ -1,12 +1,9 @@
 package com.megaproject.controller;
-import com.megaproject.dao.UserDao;
-import com.megaproject.service.UserDetailsServiceImpl;
+import com.megaproject.service.impl.UserDetailsServiceImpl;
 import com.megaproject.service.UserService;
 import com.megaproject.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

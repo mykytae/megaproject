@@ -4,7 +4,7 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 
-import com.megaproject.service.UserDetailsServiceImpl;
+import com.megaproject.service.impl.UserDetailsServiceImpl;
 import org.hibernate.ejb.HibernatePersistence;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

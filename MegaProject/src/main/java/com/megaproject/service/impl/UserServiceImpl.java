@@ -1,4 +1,4 @@
-package com.megaproject.service;
+package com.megaproject.service.impl;
 
 /**
  * Created by nik on 25.10.2016.
@@ -9,6 +9,7 @@ import com.megaproject.dao.UserDao;
 
 import com.megaproject.entity.User;
 import com.megaproject.exeptions.UserNotFound;
+import com.megaproject.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
