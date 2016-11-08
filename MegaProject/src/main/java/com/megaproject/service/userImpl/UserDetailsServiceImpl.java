@@ -1,6 +1,8 @@
-package com.megaproject.service.impl;
+package com.megaproject.service.userImpl;
 
+import com.megaproject.entity.Role;
 import com.megaproject.entity.User;
+import com.megaproject.service.RoleService;
 import com.megaproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -11,7 +13,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -25,6 +26,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     UserService userService;
 
+    @Autowired
+    RoleService roleService;
+
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         UserDetails result = null;
@@ -36,8 +40,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         this.userIdLogin=user.getId();
 
+        Role role = roleService.findByUserId(userIdLogin);
+        if (role==null){
+            return result;
+        }
+
         Set<GrantedAuthority> roles = new HashSet();
-        roles.add(new SimpleGrantedAuthority(user.getRole()));
+        roles.add(new SimpleGrantedAuthority(role.getRoleName()));
 
         result = new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), roles);
         return result;

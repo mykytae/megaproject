@@ -10,9 +10,15 @@
 <html>
 <head>
     <title>Administration Page</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="css/admin.css">
+
 </head>
 
 <body>
+
 
 <h1>Administration Menu</h1>
 
@@ -23,7 +29,8 @@
     </form>
 </p>
 
-<table border="2">
+<table>
+    <thead>
     <tr>
         <td>Add to Admin</td>
         <td>ID</td>
@@ -31,6 +38,8 @@
         <td>Surname</td>
         <td>Role</td>
     </tr>
+    </thead>
+    <tbody>
     <c:set var="List" value="${userList}"></c:set>
     <c:forEach items="${List}" var="u" varStatus="status" >
         <tr>
@@ -47,15 +56,13 @@
                 <c:out value="${u.surname}"/>
             </td>
             <td>
-                <c:out value="${u.role}"/>
-            </td>
-            <td>
-                <form>
-                    <input type="submit" value="Change">
-                </form>
+                <i class="material-icons button edit">edit</i>
+                <i class="material-icons button delete">delete</i>
             </td>
         </tr>
     </c:forEach>
+    </tbody>
 </table>
+
 </body>
 </html>

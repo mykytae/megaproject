@@ -1,5 +1,7 @@
 package com.megaproject.controller;
-import com.megaproject.service.impl.UserDetailsServiceImpl;
+import com.megaproject.entity.Role;
+import com.megaproject.service.RoleService;
+import com.megaproject.service.userImpl.UserDetailsServiceImpl;
 import com.megaproject.service.UserService;
 import com.megaproject.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,15 +29,18 @@ public class MainController {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
+    @Autowired
+    private RoleService roleService;
+
     @RequestMapping(value= "/open", method=RequestMethod.GET)
     public ModelAndView openSession (){
         ModelAndView model = new ModelAndView();
-        User user = userService.findById(userDetailsService.userIdLogin);
-        if(user.getRole().equals(ROLE_ADMIN)){
+        Role role = roleService.findByUserId(userDetailsService.userIdLogin);
+        if(role.getRoleName().equals(ROLE_ADMIN)){
             model.setViewName("redirect:/admin");
 
         }
-        else if (user.getRole().equals(ROLE_USER)){
+        else if (role.getRoleName().equals(ROLE_USER)){
             model.setViewName("redirect:/home");
         }
 
@@ -46,7 +51,11 @@ public class MainController {
     @RequestMapping(value = "/admin", method= RequestMethod.GET)
     public ModelAndView userAdmin(){
         ModelAndView model = new ModelAndView();
-        List userList = userService.findAll();
+        List<User> userList = userService.findAll();
+        for(User user : userList){
+
+
+        }
         model.addObject("userList", userList);
         model.setViewName("admin");
         return model ;
@@ -82,30 +91,31 @@ public class MainController {
 
         ModelAndView model = new ModelAndView();
 
-        User user = new User(login, password, name, surname, ROLE_USER, email);
+        User user = new User(login, password, name, surname, email);
         User userCheckLogin = userService.findByLogin(login);
         User userCheckEmail = userService.findByEmail(email);
 
-        if (userCheckLogin==null && userCheckEmail==null ){
+        if (userCheckLogin!=null && userCheckEmail!=null ){
             model.addObject("errorLogin", "Your login already exsists!");
             model.addObject("errorEmail", "This email already uses! Try to ");
             model.setViewName("registration");
         }
-        else if (userCheckLogin==null){
+        else if (userCheckLogin!=null){
             model.addObject("errorLogin", "Your login already exsists!");
             model.setViewName("registration");
         }
-        else if (userCheckEmail==null){
+        else if (userCheckEmail!=null){
             model.addObject("errorEmail", "This email already uses! Try to ");
             model.setViewName("registration");
         }
 
         userService.create(user);
+        User createdUser = userService.findByLogin(login);
+        Role role = new Role (ROLE_USER, createdUser.getId());
+
         model.addObject("success", "You was succesful registered ! Please, SIGN IN.");
         model.setViewName("login");
-
         return model;
-
     }
 
     @RequestMapping(value = {"/","/login"},method= RequestMethod.GET)

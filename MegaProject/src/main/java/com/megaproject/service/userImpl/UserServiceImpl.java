@@ -1,4 +1,4 @@
-package com.megaproject.service.impl;
+package com.megaproject.service.userImpl;
 
 /**
  * Created by nik on 25.10.2016.
@@ -13,7 +13,6 @@ import com.megaproject.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

@@ -10,52 +10,109 @@
 <html>
 <head>
     <title>Administration Page</title>
+    
+    <style>
+    <%@ include file="css/admin.css"%>
+    </style>
+
+    <style>
+        <%@ include file="css/table.css"%>
+    </style>
+
+    
 </head>
 
 <body>
+<div class="login" >
+    <div class="heading" >
+        <h1>Administration<span class="yellow"> Page</span></h1>
+        <nav class="main-menu">
+    <ul>
+        <li>
+            <a href="#">
+                <i class="fa fa-home fa-2x"></i>
+                <span class="nav-text">
+                            Admin page
+                        </span>
+            </a>
 
-<h1>Administration Menu</h1>
+        </li>
+        <li class="has-subnav">
+            <a href="#">
+                <i class="fa fa-laptop fa-2x"></i>
+                <span class="nav-text">
+                            Home
+                        </span>
+            </a>
+        </li>
+    </ul>
+    <ul class="logout">
+        <li>
+            <c:url value="/logout" var="logoutUrl" />
+            <a href="${logoutUrl}">
+                <i class="fa fa-power-off fa-2x"></i>
+                <span class="nav-text">
+                            Logout
+                        </span>
+            </a>
+        </li>
+    </ul>
+</nav>
 
-<p>
-    <c:url value="/logout" var="loginUrl" />
-    <form action="${loginUrl}">
-    <button type="submit">Logout</button>
-    </form>
-</p>
 
-<table border="2">
+
+<table class="container">
+    <thead>
     <tr>
-        <td>Add to Admin</td>
-        <td>ID</td>
-        <td>Name</td>
-        <td>Surname</td>
-        <td>Role</td>
+        <th>Add to Admin</th>
+        <th>Login</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Email</th>
+        <th>Bank Account</th>
+        <th>Role</th>
     </tr>
+    </thead>
+
+    <tbody>
     <c:set var="List" value="${userList}"></c:set>
     <c:forEach items="${List}" var="u" varStatus="status" >
         <tr>
-            <td>
+            <td >
                 <input type="checkbox">
             </td>
-            <td>
+            <td >
                 <c:out value="${u.login}"></c:out>
-            </td>
-            <td>
+            </td >
+            <td >
                 <c:out value="${u.name}"></c:out>
             </td>
             <td>
                 <c:out value="${u.surname}"/>
             </td>
             <td>
-                <c:out value="${u.role}"/>
+
             </td>
             <td>
-                <form>
-                    <input type="submit" value="Change">
-                </form>
+
+            </td>
+            <td>
+
+            </td>
+            <td>
+
+                <i class="material-icons button edit">edit</i>
+
             </td>
         </tr>
     </c:forEach>
+    </tbody>
 </table>
+
+
+
+
+</div>
+</div>
 </body>
 </html>

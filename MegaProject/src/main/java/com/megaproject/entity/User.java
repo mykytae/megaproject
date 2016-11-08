@@ -14,12 +14,11 @@ import java.util.List;
 @Table(name="USER")
 public class User {
 
-    public User(String login, String password, String name, String surname, String role, String email) {
+    public User(String login, String password, String name, String surname, String email) {
         this.login = login;
         this.password = password;
         this.name = name;
         this.surname = surname;
-        this.role = role;
         this.email= email;
     }
 
@@ -44,9 +43,6 @@ public class User {
 
     @Column(name="SURNAME")
     public String surname;
-
-    @Column(name="ROLE")
-    public String role;
 
     @Column (name="EMAIL")
     public String email;
@@ -90,14 +86,6 @@ public class User {
 
     public void setSurname(String surname) {
         this.surname = surname;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     public String getEmail() {
