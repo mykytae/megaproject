@@ -71,6 +71,7 @@
         <th>Email</th>
         <th>Bank Account</th>
         <th>Role</th>
+        <th></th>
     </tr>
     </thead>
 
@@ -100,9 +101,7 @@
 
             </td>
             <td>
-
                 <i class="material-icons button edit">edit</i>
-
             </td>
         </tr>
     </c:forEach>

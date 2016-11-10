@@ -75,6 +75,7 @@ public class MainController {
         //userDetailsService.userIdLogin берем id во время того как спринг секьюрити проверяет наш логин и пароль
         User user = userService.findById(userDetailsService.userIdLogin);
 
+        model.addObject("login", user.getLogin());
         model.addObject("name", user.getName() );
         model.addObject("surname", user.getSurname() );
         model.setViewName("user");
