@@ -72,19 +72,20 @@
         </div>
     </div>
     <div class="bottom">
-        <div class="graph">
+        <ul class="legend">
+        <li class="income">Welcome to personal account, ${login} </li>
+            <p><li class="expend">${name} ${surname}</li></p>
+        </ul>
+        <%--<div class="graph">
             <div class="line-curtain"></div>
             <ul class="legend">
-                <li class="income">Welcome {login}</li>
-                <p>
-                <li class="expend">${name} ${surname}</li>
-                </p>
+
             </ul>
             <svg version="1.1" class="lines" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                  width="310px" height="192px" viewBox="0 0 310 192" enable-background="new 0 0 310 192" xml:space="preserve">
 
       </svg>
-        </div>
+        </div>--%>
         <div class="drawer">
             <ul>
                 <li>

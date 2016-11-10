@@ -32,10 +32,10 @@ body {
 }
 
 .container {
-  background: rgba(255, 202, 209, 0.36);
+  background: rgba(255, 248, 237, 0);
   border-radius: 10px;
   margin: 40px auto;
-  width: 900px;
+  width: 1000px;
   height: 500px;
   perspective: 600px;
   -webkit-perspective: 600px;
@@ -168,12 +168,12 @@ body {
   font-size: 10pt;
   font-weight: 300;
   position: absolute;
-  top: 145px;
-  left: 72px;
+  top: 250px;
+  left: 600px;
   text-transform: uppercase;
   margin: 0;
   padding: 0;
-  animation: fadeLegend 9s ease-out infinite;
+  /*animation: fadeLegend 9s ease-out infinite; */
 }
 .legend li {
   display: inline;
@@ -199,16 +199,16 @@ body {
   height: 192px;
   width: 100%;
   z-index: 1;
-  animation: lines 9s cubic-bezier(0, 0, 0.26, 0.98) infinite;
+  animation: lines 1s cubic-bezier(0, 0, 0.26, 0.98) infinite;
 }
 
 .drawer {
-  background: #fff linear-gradient(rgba(202, 157, 248, 0.3), transparent 15px);
+  background: rgba(255, 255, 255, 0) linear-gradient(rgba(202, 157, 248, 0.3), transparent 15px);
   font-size: 10pt;
   position: absolute;
   bottom: 0px;
   width: 100%;
-  height: 370px;
+  height: 300px;
   z-index: 2;
   animation: pullOut 9s cubic-bezier(0, 1, 0.6, 1) infinite;
 }
@@ -233,7 +233,7 @@ body {
   padding: 10px 0 20px 0;
   width: 100%;
   height: auto;
-  animation: slideIn 9s cubic-bezier(0, 1, 0.6, 1) infinite;
+  /*animation: slideIn 9s cubic-bezier(0, 1, 0.6, 1) infinite;*/
 }
 .drawer li:first-of-type {
   padding-top: 25px;
