@@ -120,7 +120,6 @@ public class MainController {
     }
 
     @RequestMapping(value = {"/","/login"},method= RequestMethod.GET)
-
     public ModelAndView LogIn (@RequestParam (value="error", required = false) String error) {
         ModelAndView model = new ModelAndView();
         if (error != null) {
@@ -130,6 +129,18 @@ public class MainController {
         model.setViewName("login");
         return model;
 
+    }
+
+    @RequestMapping(value = "/pay", method = RequestMethod.GET)
+    public ModelAndView pay (@RequestParam (value="increase", required = false) String increase){
+
+        ModelAndView model = new ModelAndView();
+        if (increase!=null){
+            increase="pay";
+         model.addObject("increase", increase);
+        }
+        model.setViewName("pay");
+        return model;
     }
 
 }

@@ -39,6 +39,7 @@
     </ul>
 </nav>
 
+
 <div class="link-box"></div>
 <div class="container">
     <div class="top">
@@ -46,6 +47,9 @@
             <span></span>
             <span></span>
             <span></span>
+        </div>
+        <div class="wrap">
+            <a href="${pageContext.servletContext.contextPath}/pay" class="button" >Pay any purchase</a>
         </div>
         <div class="card">
             <div class="card-front">
@@ -63,6 +67,7 @@
                     </g>
                 </svg>
             </div>
+
             <div class="card-back">
                 <div class="bal">Balance</div>
                 <div class="bal-value">
@@ -70,21 +75,15 @@
                 </div>
             </div>
         </div>
+        <div class="wrap2">
+            <a href="${pageContext.servletContext.contextPath}/pay?increase=true" class="button">Increase the balance</a>
+        </div>
     </div>
     <div class="bottom">
-        <div class="graph">
-            <div class="line-curtain"></div>
-            <ul class="legend">
-                <li class="income">Welcome {login}</li>
-                <p>
-                <li class="expend">${name} ${surname}</li>
-                </p>
-            </ul>
-            <svg version="1.1" class="lines" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                 width="310px" height="192px" viewBox="0 0 310 192" enable-background="new 0 0 310 192" xml:space="preserve">
-
-      </svg>
-        </div>
+        <ul class="legend">
+        <li class="income">Welcome to personal account, ${login} </li>
+            <p><li class="expend">${name} ${surname}</li></p>
+        </ul>
         <div class="drawer">
             <ul>
                 <li>

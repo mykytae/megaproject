@@ -28,8 +28,8 @@ body {
 
 .login {
   padding: 15px;
-  width: 900px;
-  min-height: 600px;
+  width: 1000px;
+  min-height: 500px;
   margin: 2% auto 0 auto;
 }
 .login .heading {
@@ -147,3 +147,7 @@ h2 a {
 .edit:hover {
   color: #0a79df;
 }
+
+@import url('http://fonts.googleapis.com/css?family=Lato');
+
+

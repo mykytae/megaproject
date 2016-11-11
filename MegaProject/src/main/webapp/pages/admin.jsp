@@ -29,7 +29,7 @@
         <nav class="main-menu">
     <ul>
         <li>
-            <a href="#">
+            <a href="${pageContext.servletContext.contextPath}/admin">
                 <i class="fa fa-home fa-2x"></i>
                 <span class="nav-text">
                             Admin page
@@ -38,7 +38,7 @@
 
         </li>
         <li class="has-subnav">
-            <a href="#">
+            <a href="${pageContext.servletContext.contextPath}/home?admin=true">
                 <i class="fa fa-laptop fa-2x"></i>
                 <span class="nav-text">
                             Home
@@ -80,7 +80,7 @@
     <c:forEach items="${List}" var="u" varStatus="status" >
         <tr>
             <td >
-                <input type="checkbox">
+                            <input type="checkbox">
             </td>
             <td >
                 <c:out value="${u.login}"></c:out>
@@ -101,7 +101,7 @@
 
             </td>
             <td>
-                <i class="material-icons button edit">edit</i>
+                <button type="submit">edit</button>
             </td>
         </tr>
     </c:forEach>
