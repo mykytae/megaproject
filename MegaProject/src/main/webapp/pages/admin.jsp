@@ -19,7 +19,7 @@
         <%@ include file="css/table.css"%>
     </style>
 
-    
+
 </head>
 
 <body>
@@ -64,52 +64,53 @@
 <table class="container">
     <thead>
     <tr>
-        <th>Add to Admin</th>
-        <th>Login</th>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Email</th>
-        <th>Bank Account</th>
-        <th>Role</th>
-        <th></th>
+        <th>Admin</th>
+        <th >Login</th>
+        <th >Name</th>
+        <th >Surname</th>
+        <th >Email</th>
+        <th >Bank Account</th>
+        <th >Role</th>
+        <th ></th>
     </tr>
     </thead>
 
     <tbody>
     <c:set var="List" value="${userList}"></c:set>
     <c:forEach items="${List}" var="u" varStatus="status" >
+        <form action="${pageContext.servletContext.contextPath}/admin/add">
         <tr>
             <td >
-                            <input type="checkbox">
+
+                <input type="checkbox" value="${u.id}" name="admin">
+
             </td>
             <td >
-                <c:out value="${u.login}"></c:out>
+                <input type="input" class="control" value="${u.login}" placeholder="${u.login}" name="login">
             </td >
             <td >
-                <c:out value="${u.name}"></c:out>
+                <input type="input" class="control" value="${u.name}" placeholder="${u.name}" name="name">
             </td>
-            <td>
-                <c:out value="${u.surname}"/>
+            <td >
+                <input type="input" class="control" value="${u.surname}" placeholder="${u.surname}" name="surname">
             </td>
-            <td>
+            <td >
+                <input type="input" class="control" value="${u.email}" placeholder="${u.email}" name="email">
+            </td>
+            <td >
 
             </td>
-            <td>
+            <td >
 
             </td>
-            <td>
-
-            </td>
-            <td>
-                <button type="submit">edit</button>
+            <td >
+                <button type="input" value="${u.id}" name="id">Save</button>
             </td>
         </tr>
+        </form>
     </c:forEach>
     </tbody>
 </table>
-
-
-
 
 </div>
 </div>

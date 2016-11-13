@@ -69,21 +69,24 @@
             <table>
                 <tbody>
                 <tr><td>
-                    <c:if test="${not empty pay}">
+
+                    <c:if test="${not empty increase}">
                         <select name="sources" id="sources" class="select-style"><option value="dis" disabled selected>Increase wallet</option>
                             <option value="income">Income</option>
                         </select>
                     </c:if>
-                    <c:if test="${empty pay}">
+
+                    <c:if test="${empty increase}">
                     <select name="sources" id="sources" class="select-style"><option value="dis" disabled selected>What we pay for ?</option>
                     <option value="cloth">Cloth</option>
                     <option value="dinner">Dinner</option>
                     <option value="food">Foodstuffs</option>
                     </select>
                     </c:if>
+
                 </td>
-                    <td class="right"><input type="input" placeholder="Comment..." size="9" class="inp"> </td>
-                    <td class="right"><input type="input" placeholder="$$$$" size="3" class="inp"> </td>
+                    <td class="right"><input type="input" placeholder="Comment..." size="10" class="inp"> </td>
+                    <td class="right"><input type="input" placeholder="$" size="3" class="inp"> </td>
                 </tr>
                 <tr>
                     <td colspan="2" class="center">

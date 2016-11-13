@@ -37,4 +37,12 @@ public class RoleServiceImpl implements RoleService {
     public Role findByUserId(int id) {
         return roleDao.findOne(id);
     }
+
+    @Override
+    @Transactional
+    public Role update(Role role, String ROLE_NAME) {
+        Role updatedRole = roleDao.findByUserId(role.getUserId());
+        updatedRole.setRoleName(ROLE_NAME);
+        return updatedRole;
+    }
 }

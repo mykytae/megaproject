@@ -1,5 +1,6 @@
 package com.megaproject.controller;
 import com.megaproject.entity.Role;
+import com.megaproject.exeptions.UserNotFound;
 import com.megaproject.service.RoleService;
 import com.megaproject.service.userImpl.UserDetailsServiceImpl;
 import com.megaproject.service.UserService;
@@ -52,10 +53,6 @@ public class MainController {
     public ModelAndView userAdmin(){
         ModelAndView model = new ModelAndView();
         List<User> userList = userService.findAll();
-        for(User user : userList){
-
-
-        }
         model.addObject("userList", userList);
         model.setViewName("admin");
         return model ;
@@ -140,6 +137,28 @@ public class MainController {
          model.addObject("increase", increase);
         }
         model.setViewName("pay");
+        return model;
+    }
+
+    @RequestMapping(value = "/admin/add", method = RequestMethod.GET)
+    public ModelAndView addToAdmin (@RequestParam (value="admin", required = false) String changeRole,
+                                    @RequestParam ("login") String login,
+                                    @RequestParam ("name") String name,
+                                    @RequestParam ("surname") String surname,
+                                    @RequestParam ("email") String email,
+                                    @RequestParam ("id") int id) throws UserNotFound {
+
+        ModelAndView model = new ModelAndView();
+        User user = new User();
+        user.setId(id);
+        user.setLogin(login);
+        user.setName(name);
+        user.setSurname(surname);
+        user.setEmail(email);
+        //Role role = roleService.findByUserId(id);
+        //roleService.update(role, ROLE_ADMIN);
+        userService.update(user);
+        model.setViewName("redirect:/admin");
         return model;
     }
 

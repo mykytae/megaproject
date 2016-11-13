@@ -80,7 +80,9 @@
     <c:forEach items="${List}" var="u" varStatus="status" >
         <tr>
             <td >
-                            <input type="checkbox">
+                <form action="${pageContext.servletContext.contextPath}/admin/add">
+                <input type="checkbox" value="${u.id}" name="admin">
+                </form>
             </td>
             <td >
                 <c:out value="${u.login}"></c:out>

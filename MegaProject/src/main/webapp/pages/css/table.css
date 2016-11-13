@@ -28,7 +28,7 @@ body {
 
 .login {
   padding: 15px;
-  width: 1000px;
+  width: 1150px;
   min-height: 500px;
   margin: 2% auto 0 auto;
 }
@@ -84,7 +84,7 @@ h2 a {
 .container {
   text-align: left;
   overflow: hidden;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   display: table;
   padding: 0 0 8em 0;
@@ -151,3 +151,19 @@ h2 a {
 @import url('http://fonts.googleapis.com/css?family=Lato');
 
 
+.control {
+  display: block;
+  width: auto;
+  height: auto;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background: none;
+  border-radius: 0px;
+  padding: 10px;
+  font-weight: normal;
+  font-size: 1em;
+  width: 100%;
+  background: transparent;
+  color: #c2b8b1;
+}

@@ -62,7 +62,12 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public User update(User user) throws UserNotFound {
-        return null;
+        User updatedUser = userDao.findOne(user.getId());
+        updatedUser.setLogin(user.getLogin());
+        updatedUser.setName(user.getName());
+        updatedUser.setSurname(user.getSurname());
+        updatedUser.setEmail(user.getEmail());
+        return updatedUser;
     }
 
     @Override
