@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MegaProject/MegaProject.iml" filepath="$PROJECT_DIR$/MegaProject/MegaProject.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/megaproject.iml" filepath="$PROJECT_DIR$/.idea/megaproject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MegaProject.iml" filepath="$PROJECT_DIR$/MegaProject.iml" />
     </modules>
   </component>
 </project>
