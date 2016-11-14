@@ -9,6 +9,6 @@ import java.util.List;
  */
 public interface HistoryService {
     public History create(History history);
-    public List<History> findByUserId(int userId);
-    public List<History> findByBankAccount(String bankAccount);
+    public List findByUserId(int userId);
+    public List findByBankAccountId(int bankAccountId);
 }

@@ -61,7 +61,11 @@
 
 <div class="container">
     <div class="tab"></div>
-    <div class="paid"><p>Receipt Paid successfully</p></div>
+    <form action="${pageContext.servletContext.contextPath}/payment" method="post">
+    <div class="paid">
+        <p>Paid successfully</p>
+        <input type="submit" value="Home page" onClick="pay()"/>
+    </div>
     <div class="receipt">
         <div class="paper">
             <div class="title">Receipt</div>
@@ -85,14 +89,13 @@
                     </c:if>
 
                 </td>
-                    <td class="right"><input type="input" placeholder="Comment..." size="10" class="inp"> </td>
-                    <td class="right"><input type="input" placeholder="$" size="3" class="inp"> </td>
+                    <td class="right"><input type="input" placeholder="Comment..." size="10" class="inp" name="reason"> </td>
+                    <td class="right"><input type="input" placeholder="$" size="3" class="inp" name="money"> </td>
                 </tr>
+
                 <tr>
                     <td colspan="2" class="center">
-                        <form action="${pageContext.servletContext.contextPath}/payments" method="post">
                     <input type="button" value="Pay Now" onClick="pay()"/>
-                        </form>
                     </td>
                 </tr>
                 </tbody>
@@ -107,8 +110,8 @@
                 </div>
             </div>
         </div>
-
     </div>
+    </form>
     </div>
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>

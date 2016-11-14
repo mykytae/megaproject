@@ -3,6 +3,9 @@ package com.megaproject.entity;
 
 
 import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by nik on 07.11.2016.
@@ -37,6 +40,15 @@ public class History {
 
     public History() {
 
+    }
+
+    public History(String date, String operation, int bankAccountId, int userId, String reason, double money) {
+        this.userId=userId;
+        this.date = date;
+        this.operation = operation;
+        this.bankAccountId = bankAccountId;
+        this.reason = reason;
+        this.money = money;
     }
 
     public int getId() {
@@ -93,6 +105,12 @@ public class History {
 
     public void setMoney(double money) {
         this.money = money;
+    }
+
+    public static String dateGenerator (){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 
 }

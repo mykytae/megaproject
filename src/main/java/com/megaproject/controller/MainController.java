@@ -1,4 +1,5 @@
 package com.megaproject.controller;
+import com.megaproject.entity.History;
 import com.megaproject.entity.Role;
 import com.megaproject.exeptions.UserNotFound;
 import com.megaproject.service.HistoryService;
@@ -72,10 +73,20 @@ public class MainController {
     public ModelAndView Home (){
 
         ModelAndView model = new ModelAndView();
+        int userHomeId=userDetailsService.getUserIdLogin();
 
         //userDetailsService.userIdLogin берем id во время того как спринг секьюрити проверяет наш логин и пароль
-        User user = userService.findById(userDetailsService.getUserIdLogin());
+        User user = userService.findById(userHomeId);
 
+        //bankAccount Services
+        //
+        //
+        //
+
+        List <History> historyList = historyService.findByUserId(userHomeId);
+
+
+        model.addObject("historyList", historyList);
         model.addObject("login", user.getLogin());
         model.addObject("name", user.getName() );
         model.addObject("surname", user.getSurname() );
@@ -163,6 +174,23 @@ public class MainController {
         //roleService.update(role, ROLE_ADMIN);
         userService.update(user);
         model.setViewName("redirect:/admin");
+        return model;
+    }
+
+    @RequestMapping(value = "/payment", method = RequestMethod.POST)
+    public ModelAndView payment(@RequestParam ("sources") String operation,
+                                @RequestParam ("reason") String reason,
+                                @RequestParam ("money") double money){
+        ModelAndView model = new ModelAndView();
+        //bankAccount services
+        //
+        //
+        //
+        History history = null;
+        history = new History(history.dateGenerator(), operation, 2, userDetailsService.getUserIdLogin(), reason, money);
+
+        historyService.create(history);
+        model.setViewName("redirect:/home");
         return model;
     }
 

@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface HistoryDao extends JpaRepository<History, Integer> {
     public List<History> findByUserId (int userId);
-    public List<History> findByBankAccount(String BankAccount);
+    public List<History> findByBankAccountId(int bankAccountId);
 }

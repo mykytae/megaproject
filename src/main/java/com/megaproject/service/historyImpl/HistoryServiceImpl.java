@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -14,7 +15,8 @@ import java.util.List;
  */
 @Service
 public class HistoryServiceImpl implements HistoryService {
-    @Autowired
+
+    @Resource
     HistoryDao historyDao;
 
     @Override
@@ -32,7 +34,7 @@ public class HistoryServiceImpl implements HistoryService {
 
     @Override
     @Transactional
-    public List<History> findByBankAccount(String bankAccount) {
-        return historyDao.findByBankAccount(bankAccount);
+    public List<History> findByBankAccountId(int bankAccountId) {
+        return historyDao.findByBankAccountId(bankAccountId);
     }
 }

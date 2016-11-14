@@ -47,7 +47,7 @@
     </column>
     <column id="15" parent="5" name="DATE">
       <mandatory>1</mandatory>
-      <data-type>TIMESTAMP(23,10)|93</data-type>
+      <data-type>VARCHAR(40)|12</data-type>
     </column>
     <column id="16" parent="5" name="OPERATION">
       <data-type>VARCHAR(100)|12</data-type>
