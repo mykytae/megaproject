@@ -27,7 +27,7 @@ body {
   background: rgba(255, 248, 237, 0);
   border-radius: 10px;
   margin: 40px auto;
-  width: 900px;
+  width: 950px;
   height: 500px;
   perspective: 600px;
   -webkit-perspective: 600px;
@@ -161,7 +161,7 @@ body {
 
 .legend {
   color: #aaa;
-  font-size: 10pt;
+  font-size: 11pt;
   font-weight: 300;
   position: absolute;
   top: 250px;

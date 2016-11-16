@@ -164,14 +164,17 @@ public class MainController {
                                     @RequestParam ("id") int id) throws UserNotFound {
 
         ModelAndView model = new ModelAndView();
+        if (changeRole!=null){
+            Role role=roleService.findByUserId(id);
+            roleService.update(role, ROLE_ADMIN);
+        }
         User user = new User();
         user.setId(id);
         user.setLogin(login);
         user.setName(name);
         user.setSurname(surname);
         user.setEmail(email);
-        //Role role = roleService.findByUserId(id);
-        //roleService.update(role, ROLE_ADMIN);
+
         userService.update(user);
         model.setViewName("redirect:/admin");
         return model;

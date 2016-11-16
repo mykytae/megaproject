@@ -25,6 +25,7 @@
 <body>
 <div class="login" >
     <div class="heading" >
+
         <h1>Administration<span class="yellow"> Page</span></h1>
         <nav class="main-menu">
     <ul>
@@ -38,7 +39,7 @@
 
         </li>
         <li class="has-subnav">
-            <a href="${pageContext.servletContext.contextPath}/home?admin=true">
+            <a href="${pageContext.servletContext.contextPath}/home">
                 <i class="fa fa-laptop fa-2x"></i>
                 <span class="nav-text">
                             Home

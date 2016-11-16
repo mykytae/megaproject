@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/megaproject","/login","/signup","/register").permitAll()
                     .antMatchers("/admin").hasRole("ADMIN")
-                    .antMatchers("/home").hasRole("USER")
+                    .antMatchers("/home").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
                     .antMatchers("/open").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
                     .antMatchers("/pay").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
                     .antMatchers("/payment").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")

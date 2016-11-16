@@ -28,6 +28,35 @@
                 $(".paid").slideDown("slow");
             }
 
+            /*function checkComment() {
+                var comment = document.getElementById("comment");
+                payButton = document.getElementById("pay");
+                var spanCheck = document.getElementById("error");
+
+                if (comment.value.length < 5 | comment.value.length > 95) {
+                    payButton.disabled = true;
+                    spanCheck.innerHTML = "Comment is too small or very large!";
+                }
+                else {
+                    payButton.disabled = false;
+                    spanCheck.innerHTML = "";
+                }
+            }
+
+                function checkMoney(){
+                    var money = document.getElementById("money");
+                    payButton = document.getElementById("pay");
+                    var moneyCheck = document.getElementById("moneyError");
+                if( (money.value).match(/^[-\+]?\d+/) === null | parseInt(money.value)<0 ) {
+                    payButton.disabled = true;
+                    moneyCheck.innerHTML = "Input the the correct amount of money!";
+                }
+                else {
+                    payButton.disabled = false;
+                    moneyCheck.innerHTML = "";
+                    }
+
+            }*/
         </script>
 
     </head>
@@ -75,13 +104,13 @@
                 <tr><td>
 
                     <c:if test="${not empty increase}">
-                        <select name="sources" id="sources" class="select-style"><option value="dis" disabled selected>Increase wallet</option>
+                        <select name="sources"  id="sources" class="select-style" onchange="checkSources" value="income"><option value="income"  disabled selected>Increase wallet</option>
                             <option value="income">Income</option>
                         </select>
                     </c:if>
 
                     <c:if test="${empty increase}">
-                    <select name="sources" id="sources" class="select-style"><option value="dis" disabled selected>What we pay for ?</option>
+                    <select name="sources" id="sources" class="select-style" onchange="checkSources"><option value="food"  disabled selected>What we pay for ?</option>
                     <option value="cloth">Cloth</option>
                     <option value="dinner">Dinner</option>
                     <option value="food">Foodstuffs</option>
@@ -89,25 +118,24 @@
                     </c:if>
 
                 </td>
-                    <td class="right"><input type="input" placeholder="Comment..." size="10" class="inp" name="reason"> </td>
-                    <td class="right"><input type="input" placeholder="$" size="3" class="inp" name="money"> </td>
+                    <td class="right"><input type="input" placeholder="Comment..." size="12" class="inp" name="reason" id="comment" onchange="checkComment()"> </td>
+                    <td class="right"><input type="input" placeholder="$" size="3" class="inp" name="money" id="money" onchange="checkMoney()"> </td>
                 </tr>
 
                 <tr>
-                    <td colspan="2" class="center">
-                    <input type="button" value="Pay Now" onClick="pay()"/>
+                    <td colspan="2" class="center" onmousemove="checkMoney(), checkComment()" onmousedown="checkComment(), checkMoney()">
+                    <input type="button" value="Pay Now" onClick="pay()" id="pay"  />
+                        <p><span id="error" class="error"></span></p>
+                        <span id="moneyError" class="error"></span>
                     </td>
                 </tr>
                 </tbody>
             </table>
             <div class="sign center">
                 <div class="barcode"></div>
-                <br/>
+                <br>
                 bankAccount
-                <br/>
-                <div class="thankyou">
-                    Thank you for your business
-                </div>
+                </br>
             </div>
         </div>
     </div>
