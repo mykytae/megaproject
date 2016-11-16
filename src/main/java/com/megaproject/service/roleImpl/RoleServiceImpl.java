@@ -35,7 +35,7 @@ public class RoleServiceImpl implements RoleService {
     @Override
     @Transactional
     public Role findByUserId(int id) {
-        return roleDao.findOne(id);
+        return roleDao.findByUserId(id);
     }
 
     @Override
