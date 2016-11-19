@@ -4,8 +4,18 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 
+import com.megaproject.dao.BankAccountDao;
+import com.megaproject.dao.BankAccountImpl.BankAccountDaoImpl;
+import com.megaproject.entity.BankAccount;
+import com.megaproject.entity.History;
+import com.megaproject.entity.Role;
+import com.megaproject.entity.User;
+import com.megaproject.service.BankAccountService;
+import com.megaproject.service.bankAccountImpl.BankAccountServiceImpl;
 import com.megaproject.service.userImpl.UserDetailsServiceImpl;
+import org.hibernate.SessionFactory;
 import org.hibernate.ejb.HibernatePersistence;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +23,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate4.HibernateTransactionManager;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -106,5 +118,33 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
         return transactionManager;
     }
 
+    @Autowired
+    @Bean(name = "sessionFactory")
+    public SessionFactory getSessionFactory(DataSource dataSource) {
 
+        LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
+
+        sessionBuilder.addAnnotatedClasses(BankAccount.class);
+
+        return sessionBuilder.buildSessionFactory();
+    }
+
+    @Autowired
+    @Bean(name = "transactionManager")
+    public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
+        HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
+        return transactionManager;
+    }
+
+    @Autowired
+    @Bean(name = "bankAccountDao")
+    public BankAccountDao getBankAccountDao(SessionFactory sessionFactory) {
+        return new BankAccountDaoImpl(sessionFactory);
+    }
+
+    @Autowired
+    @Bean(name = "bankAccountService")
+    public BankAccountService getBankAccountService(){
+        return new BankAccountServiceImpl();
+    }
 }

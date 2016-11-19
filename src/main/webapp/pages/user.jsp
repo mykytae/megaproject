@@ -54,7 +54,7 @@
         <div class="card">
             <div class="card-front">
                 <div class="number">
-                    <code>0000 3266</code>
+                    <code>0000 000${bankAccount.accountNumber}</code>
                 </div>
                 <div class="due-date">
                     Due 01/30
@@ -71,7 +71,7 @@
             <div class="card-back">
                 <div class="bal">Balance</div>
                 <div class="bal-value">
-                    <span>$</span>1999
+                    <span>$</span>${bankAccount.accountValue}
                 </div>
             </div>
         </div>
@@ -140,8 +140,6 @@
                     <span>Spending $${historyList.money} on ${historyList.reason}</span>
                 </li>
                         </c:if>
-
-
 
                     </c:forEach>
           </ul>

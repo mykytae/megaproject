@@ -1,7 +1,9 @@
 package com.megaproject.controller;
+import com.megaproject.entity.BankAccount;
 import com.megaproject.entity.History;
 import com.megaproject.entity.Role;
 import com.megaproject.exeptions.UserNotFound;
+import com.megaproject.service.BankAccountService;
 import com.megaproject.service.HistoryService;
 import com.megaproject.service.RoleService;
 import com.megaproject.service.userImpl.UserDetailsServiceImpl;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -25,6 +28,9 @@ import java.util.List;
 public class MainController {
     private final String ROLE_ADMIN = "ROLE_ADMIN";
     private final String ROLE_USER = "ROLE_USER";
+
+    @Autowired
+    private BankAccountService bankAccountService;
 
     @Autowired
     private UserService userService;
@@ -79,13 +85,13 @@ public class MainController {
         User user = userService.findById(userHomeId);
 
         //bankAccount Services
-        //
+        BankAccount bankAccount = bankAccountService.findByUserId(userHomeId);
         //
         //
 
         List <History> historyList = historyService.findByUserId(userHomeId);
 
-
+        model.addObject("bankAccount", bankAccount);
         model.addObject("historyList", historyList);
         model.addObject("login", user.getLogin());
         model.addObject("name", user.getName() );
