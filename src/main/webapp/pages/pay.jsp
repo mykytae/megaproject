@@ -127,7 +127,7 @@
     <div class="receipt">
         <div class="paper">
             <div class="title">Receipt</div>
-            <div class="date">Date time: 20/07/2013</div>
+            <div class="date">Date time: ${date}</div>
             <table>
                 <tbody>
                 <tr><td>
@@ -162,7 +162,7 @@
             </table>
             <div class="sign center">
                 <div class="barcode"></div>
-                bankAccount
+                0000 000${bankAccount.accountNumber}
             </div>
         </div>
     </div>

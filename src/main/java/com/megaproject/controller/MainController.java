@@ -166,6 +166,12 @@ public class MainController {
             increase="pay";
          model.addObject("increase", increase);
         }
+        int userHomeId = userDetailsService.getUserIdLogin();
+        BankAccount bankAccount = bankAccountService.findByUserId(userHomeId);
+        String date = History.dateGenerator();
+
+        model.addObject("bankAccount", bankAccount);
+        model.addObject("date", date);
         model.setViewName("pay");
         return model;
     }
@@ -203,12 +209,12 @@ public class MainController {
         int userHomeId = userDetailsService.getUserIdLogin();
 
         BankAccount bankAccount = bankAccountService.findByUserId(userHomeId);
-        double payment=0;
+        double payment=bankAccount.getAccountValue();
         if(operation.equals("income")) {
-            payment = Double.parseDouble(new DecimalFormat("#0.00").format(bankAccount.getAccountValue() + money));
+            payment = Double.parseDouble(new DecimalFormat("#0.00").format(payment + money));
         }
         else{
-            payment = Double.parseDouble(new DecimalFormat("#0.00").format(bankAccount.getAccountValue() + money));
+            payment = Double.parseDouble(new DecimalFormat("#0.00").format(payment + money));
         }
         bankAccount.setAccountValue(payment);
         bankAccountService.update(bankAccount);
