@@ -48,4 +48,15 @@ public class BankAccountDaoImpl implements BankAccountDao {
         tx.commit();
         session.close();
     }
+
+    @Override
+    public void update(BankAccount bankAccount) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        tx = session.beginTransaction();
+        session.update(bankAccount);
+        tx.commit();
+        session.close();
+    }
+
 }

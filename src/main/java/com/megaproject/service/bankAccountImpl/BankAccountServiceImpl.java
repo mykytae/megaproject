@@ -51,4 +51,9 @@ public class BankAccountServiceImpl implements BankAccountService {
     public void save(BankAccount bankAccount) {
         bankAccountDao.saveNewBankAccount(bankAccount);
     }
+
+    @Override
+    public void update(BankAccount bankAccount) {
+        bankAccountDao.update(bankAccount);
+    }
 }

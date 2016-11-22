@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.NestedServletException;
 
 import javax.annotation.Resource;
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -202,6 +203,16 @@ public class MainController {
         int userHomeId = userDetailsService.getUserIdLogin();
 
         BankAccount bankAccount = bankAccountService.findByUserId(userHomeId);
+        double payment=0;
+        if(operation.equals("income")) {
+            payment = Double.parseDouble(new DecimalFormat("#0.00").format(bankAccount.getAccountValue() + money));
+        }
+        else{
+            payment = Double.parseDouble(new DecimalFormat("#0.00").format(bankAccount.getAccountValue() + money));
+        }
+        bankAccount.setAccountValue(payment);
+        bankAccountService.update(bankAccount);
+
         History history = null;
         history = new History(history.dateGenerator(), operation, bankAccount.getId(), userHomeId, reason, money);
         historyService.create(history);

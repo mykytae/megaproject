@@ -12,4 +12,5 @@ public interface BankAccountService {
     public BankAccount findById(int id);
     public BankAccount findByUserId(int userId);
     public void save(BankAccount bankAccount);
+    public void update(BankAccount bankAccount);
 }

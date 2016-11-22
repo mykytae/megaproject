@@ -17,6 +17,17 @@
 
 <nav class="main-menu">
     <ul>
+        <c:if test="${role.roleName eq 'ROLE_ADMIN'}">
+            <li>
+                <a href="${pageContext.servletContext.contextPath}/admin">
+                    <i class="fa fa-home fa-2x"></i>
+                    <span class="nav-text">
+                            Admin page
+                        </span>
+                </a>
+
+            </li>
+        </c:if>
         <li class="has-subnav">
             <a href="#">
                 <i class="fa fa-laptop fa-2x"></i>
