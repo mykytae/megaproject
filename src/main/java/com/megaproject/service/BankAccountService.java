@@ -1,9 +1,7 @@
 package com.megaproject.service;
 
-import com.megaproject.dao.BankAccountDao;
 import com.megaproject.entity.BankAccount;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -13,4 +11,5 @@ public interface BankAccountService {
     public List<BankAccount> findList();
     public BankAccount findById(int id);
     public BankAccount findByUserId(int userId);
+    public void save(BankAccount bankAccount);
 }

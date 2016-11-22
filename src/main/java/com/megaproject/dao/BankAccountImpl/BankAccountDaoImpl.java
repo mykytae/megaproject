@@ -2,7 +2,9 @@ package com.megaproject.dao.BankAccountImpl;
 
 import com.megaproject.dao.BankAccountDao;
 import com.megaproject.entity.BankAccount;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.CriteriaSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -35,5 +37,15 @@ public class BankAccountDaoImpl implements BankAccountDao {
                 .createCriteria(BankAccount.class).setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY).list();
         return bankList;
 
+    }
+
+    @Override
+    public void saveNewBankAccount(BankAccount bankAccount) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        tx = session.beginTransaction();
+        session.save(bankAccount);
+        tx.commit();
+        session.close();
     }
 }

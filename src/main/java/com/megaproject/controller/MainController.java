@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.NestedServletException;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -44,10 +45,12 @@ public class MainController {
     @Autowired
     private HistoryService historyService;
 
+
     @RequestMapping(value= "/open", method=RequestMethod.GET)
     public ModelAndView openSession (){
         ModelAndView model = new ModelAndView();
-        Role role = roleService.findByUserId(userDetailsService.getUserIdLogin());
+        int userHomeId = userDetailsService.getUserIdLogin();
+        Role role = roleService.findByUserId(userHomeId);
         if(role.getRoleName().equals(ROLE_ADMIN)){
             model.setViewName("redirect:/admin");
 
@@ -58,12 +61,16 @@ public class MainController {
 
         return model;
     }
-
-
-    @RequestMapping(value = "/admin", method= RequestMethod.GET)
+        @RequestMapping(value = "/admin", method= RequestMethod.GET)
     public ModelAndView userAdmin(){
         ModelAndView model = new ModelAndView();
+
         List<User> userList = userService.findAll();
+        List <BankAccount> bankAccountList = bankAccountService.findList();
+        List <Role> roleList = roleService.findAll();
+
+        model.addObject("bankList",bankAccountList);
+        model.addObject("roleList", roleList);
         model.addObject("userList", userList);
         model.setViewName("admin");
         return model ;
@@ -71,33 +78,26 @@ public class MainController {
 
     @RequestMapping(value = "/signup", method= RequestMethod.GET)
     public String SignUp (ModelMap model){
-
         return "registration";
     }
 
     @RequestMapping(value = "/home", method= RequestMethod.GET)
     public ModelAndView Home (){
-
         ModelAndView model = new ModelAndView();
-        int userHomeId=userDetailsService.getUserIdLogin();
+        int userHomeId = userDetailsService.getUserIdLogin();
 
-        //userDetailsService.userIdLogin берем id во время того как спринг секьюрити проверяет наш логин и пароль
         User user = userService.findById(userHomeId);
-
-        //bankAccount Services
         BankAccount bankAccount = bankAccountService.findByUserId(userHomeId);
-        //
-        //
-
+        Role role = roleService.findByUserId(userHomeId);
         List <History> historyList = historyService.findByUserId(userHomeId);
 
+        model.addObject("role", role);
         model.addObject("bankAccount", bankAccount);
         model.addObject("historyList", historyList);
         model.addObject("login", user.getLogin());
         model.addObject("name", user.getName() );
         model.addObject("surname", user.getSurname() );
         model.setViewName("user");
-
         return model ;
     }
 
@@ -107,7 +107,6 @@ public class MainController {
                                       @RequestParam("surname") String surname,
                                       @RequestParam("email") String email,
                                       @RequestParam("password") String password){
-
         ModelAndView model = new ModelAndView();
 
         User user = new User(login, password, name, surname, email);
@@ -116,21 +115,31 @@ public class MainController {
 
         if (userCheckLogin!=null && userCheckEmail!=null ){
             model.addObject("errorLogin", "Your login already exsists!");
-            model.addObject("errorEmail", "This email already uses! Try to ");
+            model.addObject("errorEmail", "This email already uses! ");
             model.setViewName("registration");
+            return model;
         }
         else if (userCheckLogin!=null){
             model.addObject("errorLogin", "Your login already exsists!");
             model.setViewName("registration");
+            return model;
         }
         else if (userCheckEmail!=null){
             model.addObject("errorEmail", "This email already uses! Try to ");
             model.setViewName("registration");
+            return model;
         }
 
         userService.create(user);
         User createdUser = userService.findByLogin(login);
+
         Role role = new Role (ROLE_USER, createdUser.getId());
+        roleService.create(role);
+
+        List<BankAccount> bankList = bankAccountService.findList();
+        BankAccount bankNumber = bankList.get(bankList.size()-1);
+        BankAccount bankAccount = new BankAccount(bankNumber.getAccountNumber()+1, 0.0, createdUser.getId());
+        bankAccountService.save(bankAccount);
 
         model.addObject("success", "You was succesful registered ! Please, SIGN IN.");
         model.setViewName("login");
@@ -151,7 +160,6 @@ public class MainController {
 
     @RequestMapping(value = "/pay", method = RequestMethod.GET)
     public ModelAndView pay (@RequestParam (value="increase", required = false) String increase){
-
         ModelAndView model = new ModelAndView();
         if (increase!=null){
             increase="pay";
@@ -180,8 +188,8 @@ public class MainController {
         user.setName(name);
         user.setSurname(surname);
         user.setEmail(email);
-
         userService.update(user);
+
         model.setViewName("redirect:/admin");
         return model;
     }
@@ -191,14 +199,13 @@ public class MainController {
                                 @RequestParam ("reason") String reason,
                                 @RequestParam ("money") double money){
         ModelAndView model = new ModelAndView();
-        //bankAccount services
-        //
-        //
-        //
-        History history = null;
-        history = new History(history.dateGenerator(), operation, 2, userDetailsService.getUserIdLogin(), reason, money);
+        int userHomeId = userDetailsService.getUserIdLogin();
 
+        BankAccount bankAccount = bankAccountService.findByUserId(userHomeId);
+        History history = null;
+        history = new History(history.dateGenerator(), operation, bankAccount.getId(), userHomeId, reason, money);
         historyService.create(history);
+
         model.setViewName("redirect:/home");
         return model;
     }

@@ -1,5 +1,6 @@
 package com.megaproject.entity;
 
+
 import javax.persistence.*;
 
 /**
@@ -23,9 +24,10 @@ public class BankAccount {
     @Column(name="USER_ID")
     int userId;
 
-    public BankAccount(double accountValue, int userId) {
+    public BankAccount(int accountNumber,double accountValue, int userId) {
         this.accountValue = accountValue;
         this.userId = userId;
+        this.accountNumber=accountNumber;
     }
 
     public BankAccount(){

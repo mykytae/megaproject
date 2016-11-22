@@ -26,7 +26,6 @@ public class User {
 
     }
 
-
     @Id
     @GeneratedValue
     @Column(name="ID")
@@ -95,6 +94,7 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
 
     public static List<User> getUserList(User user) {
         List<User> list = new ArrayList<>();

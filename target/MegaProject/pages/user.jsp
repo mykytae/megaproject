@@ -71,7 +71,7 @@
             <div class="card-back">
                 <div class="bal">Balance</div>
                 <div class="bal-value">
-                    <span>$</span>${bankAccount.accountNumber}
+                    <span>$</span>${bankAccount.accountValue}
                 </div>
             </div>
         </div>

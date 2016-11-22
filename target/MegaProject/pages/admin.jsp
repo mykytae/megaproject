@@ -98,12 +98,28 @@
             <td >
                 <input type="input" class="control" value="${u.email}" placeholder="${u.email}" name="email">
             </td>
-            <td >
 
-            </td>
-            <td >
+            <c:forEach items="${bankList}" var="b" varStatus="status">
+             <c:if test="${b.userId==u.id}">
+                 <td >
+                        000${b.accountNumber}
+                 </td>
+             </c:if>
+            </c:forEach>
 
-            </td>
+            <c:forEach items="${roleList}" var="r" varStatus="status">
+               <c:if test="${r.userId==u.id}">
+                <td >
+                        <c:if test="${r.roleName eq 'ROLE_USER'}">
+                            User
+                        </c:if>
+                        <c:if test="${r.roleName eq 'ROLE_ADMIN'}">
+                            Admin
+                        </c:if>
+                </td>
+               </c:if>
+            </c:forEach>
+
             <td >
                 <button type="input" value="${u.id}" name="id">Save</button>
             </td>

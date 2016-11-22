@@ -3,7 +3,6 @@ package com.megaproject.service.bankAccountImpl;
 import com.megaproject.dao.BankAccountDao;
 import com.megaproject.entity.BankAccount;
 import com.megaproject.service.BankAccountService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -46,5 +45,10 @@ public class BankAccountServiceImpl implements BankAccountService {
             }
         }
         return bankAccountFinder;
+    }
+
+    @Override
+    public void save(BankAccount bankAccount) {
+        bankAccountDao.saveNewBankAccount(bankAccount);
     }
 }
