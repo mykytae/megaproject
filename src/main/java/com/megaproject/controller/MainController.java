@@ -9,9 +9,11 @@ import com.megaproject.service.RoleService;
 import com.megaproject.service.userImpl.UserDetailsServiceImpl;
 import com.megaproject.service.UserService;
 import com.megaproject.entity.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -91,6 +93,7 @@ public class MainController {
         BankAccount bankAccount = bankAccountService.findByUserId(userHomeId);
         Role role = roleService.findByUserId(userHomeId);
         List <History> historyList = historyService.findByUserId(userHomeId);
+        //Double.parseDouble(new DecimalFormat("#0.00").format(
 
         model.addObject("role", role);
         model.addObject("bankAccount", bankAccount);
@@ -138,8 +141,12 @@ public class MainController {
         roleService.create(role);
 
         List<BankAccount> bankList = bankAccountService.findList();
-        BankAccount bankNumber = bankList.get(bankList.size()-1);
-        BankAccount bankAccount = new BankAccount(bankNumber.getAccountNumber()+1, 0.0, createdUser.getId());
+        int temp=0;
+        for(BankAccount bankAccount : bankList){
+            if(bankAccount.getAccountNumber()>temp){
+            temp = bankAccount.getAccountNumber();}
+        }
+        BankAccount bankAccount = new BankAccount(temp+1, 0.0, createdUser.getId());
         bankAccountService.save(bankAccount);
 
         model.addObject("success", "You was succesful registered ! Please, SIGN IN.");
@@ -211,10 +218,11 @@ public class MainController {
         BankAccount bankAccount = bankAccountService.findByUserId(userHomeId);
         double payment=bankAccount.getAccountValue();
         if(operation.equals("income")) {
-            payment = Double.parseDouble(new DecimalFormat("#0.00").format(payment + money));
+            payment = payment + money;
         }
         else{
-            payment = Double.parseDouble(new DecimalFormat("#0.00").format(payment + money));
+            payment = payment - money;
+            //Double.parseDouble(new DecimalFormat("#0.00").format()
         }
         bankAccount.setAccountValue(payment);
         bankAccountService.update(bankAccount);
