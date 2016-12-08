@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @Entity
-@Table(name="USER")
+@Table(name="USER_TABLE")
 public class User {
 
     public User(String login, String password, String name, String surname, String email) {
@@ -96,11 +96,6 @@ public class User {
     }
 
 
-    public static List<User> getUserList(User user) {
-        List<User> list = new ArrayList<>();
-        list.add(user);
-        return list;
-    }
 
 }
 

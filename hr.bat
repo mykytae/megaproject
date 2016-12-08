@@ -1,0 +1,2 @@
+call mvn -B -s settings.xml clean install
+call java -Dspring.profiles.active="datajpa,heroku" -DDATABASE_URL="jdbc:postgresql://ec2-54-247-99-159.eu-west-1.compute.amazonaws.com:5432/ddenff1afjfvqq" -jar target/dependency/webapp-runner.jar target/*.war
