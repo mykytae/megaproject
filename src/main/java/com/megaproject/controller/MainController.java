@@ -24,9 +24,6 @@ import javax.annotation.Resource;
 import java.text.DecimalFormat;
 import java.util.List;
 
-/**
- * Created by nik on 17.10.2016.
- */
 @Controller
 @RequestMapping("/")
 public class MainController {
@@ -48,7 +45,6 @@ public class MainController {
     @Autowired
     private HistoryService historyService;
 
-
     @RequestMapping(value= "/open", method=RequestMethod.GET)
     public ModelAndView openSession (){
         ModelAndView model = new ModelAndView();
@@ -56,12 +52,9 @@ public class MainController {
         Role role = roleService.findByUserId(userHomeId);
         if(role.getRoleName().equals(ROLE_ADMIN)){
             model.setViewName("redirect:/admin");
-
-        }
-        else if (role.getRoleName().equals(ROLE_USER)){
+        }else if (role.getRoleName().equals(ROLE_USER)){
             model.setViewName("redirect:/home");
         }
-
         return model;
     }
         @RequestMapping(value = "/admin", method= RequestMethod.GET)
@@ -92,9 +85,8 @@ public class MainController {
         User user = userService.findById(userHomeId);
         BankAccount bankAccount = bankAccountService.findByUserId(userHomeId);
         Role role = roleService.findByUserId(userHomeId);
-        List <History> historyList = historyService.findByUserId(userHomeId);
-        //Double.parseDouble(new DecimalFormat("#0.00").format(
-
+        List <History> historyList = historyService.findByUserId(userHomeId);  
+        
         model.addObject("role", role);
         model.addObject("bankAccount", bankAccount);
         model.addObject("historyList", historyList);
@@ -219,8 +211,7 @@ public class MainController {
         double payment=bankAccount.getAccountValue();
         if(operation.equals("income")) {
             payment = payment + money;
-        }
-        else{
+        }else{
             payment = payment - money;
             //Double.parseDouble(new DecimalFormat("#0.00").format()
         }
