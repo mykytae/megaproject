@@ -1,17 +1,11 @@
 package com.megaproject.entity;
 
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by nik on 17.10.2016.
- */
-
-
 @Entity
-@Table(name="USER_TABLE")
+@Table(name = "USER")
 public class User {
 
     public User(String login, String password, String name, String surname, String email) {
@@ -19,31 +13,31 @@ public class User {
         this.password = password;
         this.name = name;
         this.surname = surname;
-        this.email= email;
+        this.email = email;
     }
 
-    public User(){
+    public User() {
 
     }
 
     @Id
     @GeneratedValue
-    @Column(name="ID")
+    @Column(name = "ID")
     public int id;
 
-    @Column(name="LOGIN")
+    @Column(name = "LOGIN")
     public String login;
 
-    @Column(name="PASSWORD")
+    @Column(name = "PASSWORD")
     public String password;
 
-    @Column(name="NAME")
+    @Column(name = "NAME")
     public String name;
 
-    @Column(name="SURNAME")
+    @Column(name = "SURNAME")
     public String surname;
 
-    @Column (name="EMAIL")
+    @Column(name = "EMAIL")
     public String email;
 
 
@@ -94,8 +88,6 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
-
 
 }
 

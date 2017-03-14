@@ -1,38 +1,35 @@
 package com.megaproject.entity;
 
-
 import javax.persistence.*;
 
-/**
- * Created by nik on 07.11.2016.
- */
 @Entity
-@Table(name="BANK_ACCOUNT")
+@Table(name = "BANK_ACCOUNT")
 public class BankAccount {
+
+    public BankAccount(int accountNumber, double accountValue, int userId) {
+        this.accountValue = accountValue;
+        this.userId = userId;
+        this.accountNumber = accountNumber;
+    }
+
+    public BankAccount() {
+
+    }
+
     @Id
     @GeneratedValue
-    @Column(name="ID")
+    @Column(name = "ID")
     int id;
 
     @GeneratedValue
-    @Column(name="ACCOUNT_NUMBER")
+    @Column(name = "ACCOUNT_NUMBER")
     int accountNumber;
 
-    @Column(name="ACCOUNT_VALUE")
+    @Column(name = "ACCOUNT_VALUE")
     double accountValue;
 
-    @Column(name="USER_ID")
+    @Column(name = "USER_ID")
     int userId;
-
-    public BankAccount(int accountNumber,double accountValue, int userId) {
-        this.accountValue = accountValue;
-        this.userId = userId;
-        this.accountNumber=accountNumber;
-    }
-
-    public BankAccount(){
-
-    }
 
     public int getId() {
         return id;

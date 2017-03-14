@@ -1,18 +1,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" pageEncoding="UTF-8" session="true"%>
+<%@ page language="java" pageEncoding="UTF-8" session="true" %>
 <html>
 
 <head>
 
-<title>MEGAPROJECT</title>
+    <title>MEGAPROJECT</title>
     <style>
-    <%@ include file="css/style.css" %>
+        <%@ include file="css/style.css" %>
     </style>
 </head>
 
 <body>
 
-<div class="login" >
+<div class="login">
     <h1>Megaproject Payments</h1>
     <div class="heading">
         <h2>Sign in</h2>
@@ -20,8 +20,7 @@
             <span class="success">${success}</span>
         </p>
 
-
-        <c:url value="/j_spring_security_check" var="loginUrl" />
+        <c:url value="/j_spring_security_check" var="loginUrl"/>
         <form action="${loginUrl}" method="post">
 
             <div class="input-group input-group-lg">
@@ -35,7 +34,7 @@
                 <input type="password" class="form-control" placeholder="Password" name="password" id="password">
             </div>
 
-                <button type="submit" class="float">Ok</button>
+            <button type="submit" class="float">Ok</button>
 
         </form>
 
@@ -47,7 +46,6 @@
         <form action="${pageContext.servletContext.contextPath}/signup">
             <button type="submit" class="float">Sign Up</button>
         </form>
-
 
 
     </div>

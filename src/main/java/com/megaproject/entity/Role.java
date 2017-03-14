@@ -2,12 +2,8 @@ package com.megaproject.entity;
 
 import javax.persistence.*;
 
-
-/**
- * Created by nik on 07.11.2016.
- */
 @Entity
-@Table(name="ROLE")
+@Table(name = "ROLE")
 public class Role {
 
     public Role(String roleName, int userId) {
@@ -15,19 +11,19 @@ public class Role {
         this.userId = userId;
     }
 
-    public Role(){
+    public Role() {
 
     }
 
     @Id
     @GeneratedValue
-    @Column(name="ID")
+    @Column(name = "ID")
     int id;
 
-    @Column(name="ROLE_NAME")
+    @Column(name = "ROLE_NAME")
     String roleName;
 
-    @Column(name="USER_ID")
+    @Column(name = "USER_ID")
     int userId;
 
     public int getId() {

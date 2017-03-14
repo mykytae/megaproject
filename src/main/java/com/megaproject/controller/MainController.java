@@ -1,4 +1,5 @@
 package com.megaproject.controller;
+
 import com.megaproject.entity.BankAccount;
 import com.megaproject.entity.History;
 import com.megaproject.entity.Role;
@@ -45,82 +46,81 @@ public class MainController {
     @Autowired
     private HistoryService historyService;
 
-    @RequestMapping(value= "/open", method=RequestMethod.GET)
-    public ModelAndView openSession (){
+    @RequestMapping(value = "/open", method = RequestMethod.GET)
+    public ModelAndView openSession() {
         ModelAndView model = new ModelAndView();
         int userHomeId = userDetailsService.getUserIdLogin();
         Role role = roleService.findByUserId(userHomeId);
-        if(role.getRoleName().equals(ROLE_ADMIN)){
+        if (role.getRoleName().equals(ROLE_ADMIN)) {
             model.setViewName("redirect:/admin");
-        }else if (role.getRoleName().equals(ROLE_USER)){
+        } else if (role.getRoleName().equals(ROLE_USER)) {
             model.setViewName("redirect:/home");
         }
         return model;
     }
-        @RequestMapping(value = "/admin", method= RequestMethod.GET)
-    public ModelAndView userAdmin(){
+
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public ModelAndView userAdmin() {
         ModelAndView model = new ModelAndView();
 
         List<User> userList = userService.findAll();
-        List <BankAccount> bankAccountList = bankAccountService.findList();
-        List <Role> roleList = roleService.findAll();
+        List<BankAccount> bankAccountList = bankAccountService.findList();
+        List<Role> roleList = roleService.findAll();
 
-        model.addObject("bankList",bankAccountList);
+        model.addObject("bankList", bankAccountList);
         model.addObject("roleList", roleList);
         model.addObject("userList", userList);
         model.setViewName("admin");
-        return model ;
+        return model;
     }
 
-    @RequestMapping(value = "/signup", method= RequestMethod.GET)
-    public String SignUp (ModelMap model){
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    public String SignUp(ModelMap model) {
         return "registration";
     }
 
-    @RequestMapping(value = "/home", method= RequestMethod.GET)
-    public ModelAndView Home (){
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    public ModelAndView Home() {
         ModelAndView model = new ModelAndView();
         int userHomeId = userDetailsService.getUserIdLogin();
 
         User user = userService.findById(userHomeId);
         BankAccount bankAccount = bankAccountService.findByUserId(userHomeId);
         Role role = roleService.findByUserId(userHomeId);
-        List <History> historyList = historyService.findByUserId(userHomeId);  
-        
+        List<History> historyList = historyService.findByUserId(userHomeId);
+
         model.addObject("role", role);
         model.addObject("bankAccount", bankAccount);
         model.addObject("historyList", historyList);
         model.addObject("login", user.getLogin());
-        model.addObject("name", user.getName() );
-        model.addObject("surname", user.getSurname() );
+        model.addObject("name", user.getName());
+        model.addObject("surname", user.getSurname());
         model.setViewName("user");
-        return model ;
+        return model;
     }
 
-    @RequestMapping(value="/register", method=RequestMethod.POST)
-    public ModelAndView registration (@RequestParam("login") String login,
-                                      @RequestParam("name") String name,
-                                      @RequestParam("surname") String surname,
-                                      @RequestParam("email") String email,
-                                      @RequestParam("password") String password){
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ModelAndView registration(@RequestParam("login") String login,
+                                     @RequestParam("name") String name,
+                                     @RequestParam("surname") String surname,
+                                     @RequestParam("email") String email,
+                                     @RequestParam("password") String password) {
         ModelAndView model = new ModelAndView();
 
         User user = new User(login, password, name, surname, email);
         User userCheckLogin = userService.findByLogin(login);
         User userCheckEmail = userService.findByEmail(email);
 
-        if (userCheckLogin!=null && userCheckEmail!=null ){
+        if (userCheckLogin != null && userCheckEmail != null) {
             model.addObject("errorLogin", "Your login already exsists!");
             model.addObject("errorEmail", "This email already uses! ");
             model.setViewName("registration");
             return model;
-        }
-        else if (userCheckLogin!=null){
+        } else if (userCheckLogin != null) {
             model.addObject("errorLogin", "Your login already exsists!");
             model.setViewName("registration");
             return model;
-        }
-        else if (userCheckEmail!=null){
+        } else if (userCheckEmail != null) {
             model.addObject("errorEmail", "This email already uses! Try to ");
             model.setViewName("registration");
             return model;
@@ -129,16 +129,17 @@ public class MainController {
         userService.create(user);
         User createdUser = userService.findByLogin(login);
 
-        Role role = new Role (ROLE_USER, createdUser.getId());
+        Role role = new Role(ROLE_USER, createdUser.getId());
         roleService.create(role);
 
         List<BankAccount> bankList = bankAccountService.findList();
-        int temp=0;
-        for(BankAccount bankAccount : bankList){
-            if(bankAccount.getAccountNumber()>temp){
-            temp = bankAccount.getAccountNumber();}
+        int temp = 0;
+        for (BankAccount bankAccount : bankList) {
+            if (bankAccount.getAccountNumber() > temp) {
+                temp = bankAccount.getAccountNumber();
+            }
         }
-        BankAccount bankAccount = new BankAccount(temp+1, 0.0, createdUser.getId());
+        BankAccount bankAccount = new BankAccount(temp + 1, 0.0, createdUser.getId());
         bankAccountService.save(bankAccount);
 
         model.addObject("success", "You was succesful registered ! Please, SIGN IN.");
@@ -146,8 +147,8 @@ public class MainController {
         return model;
     }
 
-    @RequestMapping(value = {"/","/login"},method= RequestMethod.GET)
-    public ModelAndView LogIn (@RequestParam (value="error", required = false) String error) {
+    @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
+    public ModelAndView LogIn(@RequestParam(value = "error", required = false) String error) {
         ModelAndView model = new ModelAndView();
         if (error != null) {
             error = "Your username or password is incorrect!";
@@ -159,11 +160,11 @@ public class MainController {
     }
 
     @RequestMapping(value = "/pay", method = RequestMethod.GET)
-    public ModelAndView pay (@RequestParam (value="increase", required = false) String increase){
+    public ModelAndView pay(@RequestParam(value = "increase", required = false) String increase) {
         ModelAndView model = new ModelAndView();
-        if (increase!=null){
-            increase="pay";
-         model.addObject("increase", increase);
+        if (increase != null) {
+            increase = "pay";
+            model.addObject("increase", increase);
         }
         int userHomeId = userDetailsService.getUserIdLogin();
         BankAccount bankAccount = bankAccountService.findByUserId(userHomeId);
@@ -176,16 +177,16 @@ public class MainController {
     }
 
     @RequestMapping(value = "/admin/add", method = RequestMethod.GET)
-    public ModelAndView addToAdmin (@RequestParam (value="admin", required = false) String changeRole,
-                                    @RequestParam ("login") String login,
-                                    @RequestParam ("name") String name,
-                                    @RequestParam ("surname") String surname,
-                                    @RequestParam ("email") String email,
-                                    @RequestParam ("id") int id) throws UserNotFound {
+    public ModelAndView addToAdmin(@RequestParam(value = "admin", required = false) String changeRole,
+                                   @RequestParam("login") String login,
+                                   @RequestParam("name") String name,
+                                   @RequestParam("surname") String surname,
+                                   @RequestParam("email") String email,
+                                   @RequestParam("id") int id) throws UserNotFound {
 
         ModelAndView model = new ModelAndView();
-        if (changeRole!=null){
-            Role role=roleService.findByUserId(id);
+        if (changeRole != null) {
+            Role role = roleService.findByUserId(id);
             roleService.update(role, ROLE_ADMIN);
         }
         User user = new User();
@@ -201,17 +202,17 @@ public class MainController {
     }
 
     @RequestMapping(value = "/payment", method = RequestMethod.POST)
-    public ModelAndView payment(@RequestParam ("sources") String operation,
-                                @RequestParam ("reason") String reason,
-                                @RequestParam ("money") double money){
+    public ModelAndView payment(@RequestParam("sources") String operation,
+                                @RequestParam("reason") String reason,
+                                @RequestParam("money") double money) {
         ModelAndView model = new ModelAndView();
         int userHomeId = userDetailsService.getUserIdLogin();
 
         BankAccount bankAccount = bankAccountService.findByUserId(userHomeId);
-        double payment=bankAccount.getAccountValue();
-        if(operation.equals("income")) {
+        double payment = bankAccount.getAccountValue();
+        if (operation.equals("income")) {
             payment = payment + money;
-        }else{
+        } else {
             payment = payment - money;
             //Double.parseDouble(new DecimalFormat("#0.00").format()
         }

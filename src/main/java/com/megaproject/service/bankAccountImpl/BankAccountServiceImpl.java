@@ -8,16 +8,11 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
-/**
- * Created by nik on 18.11.2016.
- */
 @Service
 public class BankAccountServiceImpl implements BankAccountService {
 
     @Resource
     BankAccountDao bankAccountDao;
-
-
 
     @Override
     public List<BankAccount> findList() {
@@ -28,9 +23,9 @@ public class BankAccountServiceImpl implements BankAccountService {
     @Override
     public BankAccount findById(int id) {
         BankAccount bankAccountFinder = null;
-        for (BankAccount bankAccount : findList()){
-            if(bankAccount.getId()==id){
-                bankAccountFinder=bankAccount;
+        for (BankAccount bankAccount : findList()) {
+            if (bankAccount.getId() == id) {
+                bankAccountFinder = bankAccount;
             }
         }
         return bankAccountFinder;
@@ -39,9 +34,9 @@ public class BankAccountServiceImpl implements BankAccountService {
     @Override
     public BankAccount findByUserId(int userId) {
         BankAccount bankAccountFinder = null;
-        for (BankAccount bankAccount : findList()){
-            if(bankAccount.getUserId()==userId){
-                bankAccountFinder=bankAccount;
+        for (BankAccount bankAccount : findList()) {
+            if (bankAccount.getUserId() == userId) {
+                bankAccountFinder = bankAccount;
             }
         }
         return bankAccountFinder;

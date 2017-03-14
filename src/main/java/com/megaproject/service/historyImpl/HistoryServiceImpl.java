@@ -3,16 +3,12 @@ package com.megaproject.service.historyImpl;
 import com.megaproject.dao.HistoryDao;
 import com.megaproject.entity.History;
 import com.megaproject.service.HistoryService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
 
-/**
- * Created by nik on 14.11.2016.
- */
 @Service
 public class HistoryServiceImpl implements HistoryService {
 

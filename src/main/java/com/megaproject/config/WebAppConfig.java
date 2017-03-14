@@ -3,13 +3,9 @@ package com.megaproject.config;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 
-
 import com.megaproject.dao.BankAccountDao;
 import com.megaproject.dao.BankAccountImpl.BankAccountDaoImpl;
 import com.megaproject.entity.BankAccount;
-import com.megaproject.entity.History;
-import com.megaproject.entity.Role;
-import com.megaproject.entity.User;
 import com.megaproject.service.BankAccountService;
 import com.megaproject.service.bankAccountImpl.BankAccountServiceImpl;
 import com.megaproject.service.userImpl.UserDetailsServiceImpl;
@@ -34,11 +30,9 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
+
 import java.util.Properties;
 
-/**
- * Created by nik on 25.10.2016.
- */
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
@@ -60,7 +54,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     private Environment env;
 
     @Bean
-    public DataSource dataSource(){
+    public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(env.getRequiredProperty(PROPERTY_NAME_DATABASE_DRIVER));
         dataSource.setUrl(env.getRequiredProperty(PROPERTY_NAME_DATABASE_URL));
@@ -82,33 +76,32 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
     }
 
-    private Properties hibProperties(){
+    private Properties hibProperties() {
         Properties properties = new Properties();
         properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
         properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
-        return  properties;
+        return properties;
     }
 
     @Override
-    public void addResourceHandlers (ResourceHandlerRegistry registry){
-     registry.addResourceHandler("/pages/**").addResourceLocations("/pages/");
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/pages/**").addResourceLocations("/pages/");
     }
 
     @Bean
-    public UrlBasedViewResolver setupViewRosolver(){
+    public UrlBasedViewResolver setupViewRosolver() {
         UrlBasedViewResolver resolver = new UrlBasedViewResolver();
         resolver.setPrefix("/pages/");
         resolver.setSuffix(".jsp");
         resolver.setViewClass(JstlView.class);
 
-        return  resolver;
-
+        return resolver;
     }
 
     @Bean
-    public UserDetailsService getUserDetailsService(){
+    public UserDetailsService getUserDetailsService() {
 
-        return  new UserDetailsServiceImpl();
+        return new UserDetailsServiceImpl();
     }
 
     @Bean
@@ -144,7 +137,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
     @Autowired
     @Bean(name = "bankAccountService")
-    public BankAccountService getBankAccountService(){
+    public BankAccountService getBankAccountService() {
         return new BankAccountServiceImpl();
     }
 }

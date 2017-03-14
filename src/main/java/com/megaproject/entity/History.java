@@ -1,55 +1,49 @@
 package com.megaproject.entity;
 
-
-
 import javax.persistence.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by nik on 07.11.2016.
- */
 @Entity
-@Table(name="HISTORY")
+@Table(name = "HISTORY")
 public class History {
 
-    @Id
-    @GeneratedValue
-    @Column(name="ID")
-    int id;
-
-    @Column(name="DATE")
-    String date;
-
-    @Column(name="OPERATION")
-    String operation;
-
-    @Column(name="USER_ID")
-    int userId;
-
-    @Column(name="BANK_ACCOUNT_ID")
-    int bankAccountId;
-
-    @Column(name="REASON")
-    String reason;
-
-    @Column(name="MONEY")
-    double money;
-
-
-    public History() {
-
-    }
-
     public History(String date, String operation, int bankAccountId, int userId, String reason, double money) {
-        this.userId=userId;
+        this.userId = userId;
         this.date = date;
         this.operation = operation;
         this.bankAccountId = bankAccountId;
         this.reason = reason;
         this.money = money;
     }
+
+    public History() {
+
+    }
+
+    @Id
+    @GeneratedValue
+    @Column(name = "ID")
+    int id;
+
+    @Column(name = "DATE")
+    String date;
+
+    @Column(name = "OPERATION")
+    String operation;
+
+    @Column(name = "USER_ID")
+    int userId;
+
+    @Column(name = "BANK_ACCOUNT_ID")
+    int bankAccountId;
+
+    @Column(name = "REASON")
+    String reason;
+
+    @Column(name = "MONEY")
+    double money;
 
     public int getId() {
         return id;
@@ -107,7 +101,7 @@ public class History {
         this.money = money;
     }
 
-    public static String dateGenerator (){
+    public static String dateGenerator() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         return dateFormat.format(date);

@@ -3,16 +3,12 @@ package com.megaproject.service.roleImpl;
 import com.megaproject.dao.RoleDao;
 import com.megaproject.entity.Role;
 import com.megaproject.service.RoleService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
 
-/**
- * Created by nik on 07.11.2016.
- */
 @Service
 public class RoleServiceImpl implements RoleService {
 
