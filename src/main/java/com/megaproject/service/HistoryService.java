@@ -11,4 +11,6 @@ public interface HistoryService {
     public List findByUserId(int userId);
 
     public List findByBankAccountId(int bankAccountId);
+
+    public String generateDate();
 }

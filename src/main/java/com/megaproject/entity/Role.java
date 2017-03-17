@@ -18,13 +18,13 @@ public class Role {
     @Id
     @GeneratedValue
     @Column(name = "ID")
-    int id;
+    private int id;
 
     @Column(name = "ROLE_NAME")
-    String roleName;
+    private String roleName;
 
     @Column(name = "USER_ID")
-    int userId;
+    private int userId;
 
     public int getId() {
         return id;

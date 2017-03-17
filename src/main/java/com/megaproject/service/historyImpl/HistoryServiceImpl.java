@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -32,5 +35,12 @@ public class HistoryServiceImpl implements HistoryService {
     @Transactional
     public List<History> findByBankAccountId(int bankAccountId) {
         return historyDao.findByBankAccountId(bankAccountId);
+    }
+
+    @Override
+    public String generateDate() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 }

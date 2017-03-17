@@ -23,22 +23,22 @@ public class User {
     @Id
     @GeneratedValue
     @Column(name = "ID")
-    public int id;
+    private int id;
 
     @Column(name = "LOGIN")
-    public String login;
+    private String login;
 
     @Column(name = "PASSWORD")
-    public String password;
+    private String password;
 
     @Column(name = "NAME")
-    public String name;
+    private String name;
 
     @Column(name = "SURNAME")
-    public String surname;
+    private String surname;
 
     @Column(name = "EMAIL")
-    public String email;
+    private String email;
 
 
     public int getId() {

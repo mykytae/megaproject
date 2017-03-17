@@ -25,25 +25,25 @@ public class History {
     @Id
     @GeneratedValue
     @Column(name = "ID")
-    int id;
+    private int id;
 
     @Column(name = "DATE")
-    String date;
+    private String date;
 
     @Column(name = "OPERATION")
-    String operation;
+    private String operation;
 
     @Column(name = "USER_ID")
-    int userId;
+    private int userId;
 
     @Column(name = "BANK_ACCOUNT_ID")
-    int bankAccountId;
+    private int bankAccountId;
 
     @Column(name = "REASON")
-    String reason;
+    private String reason;
 
     @Column(name = "MONEY")
-    double money;
+    private double money;
 
     public int getId() {
         return id;
@@ -100,11 +100,4 @@ public class History {
     public void setMoney(double money) {
         this.money = money;
     }
-
-    public static String dateGenerator() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-        return dateFormat.format(date);
-    }
-
 }

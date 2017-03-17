@@ -13,7 +13,7 @@ public interface UserService {
 
     public List findAll();
 
-    public User update(User user) throws UserNotFound;
+    public User update(User user);
 
     public User findById(int id);
 

@@ -15,17 +15,10 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by nik on 25.10.2016.
- */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private int userIdLogin;
-
-    public int getUserIdLogin() {
-        return userIdLogin;
-    }
+    private static int userIdLogin;
 
     @Autowired
     UserService userService;
@@ -54,5 +47,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         result = new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), roles);
         return result;
+    }
+
+    public int getUserLoginId() {
+        return userIdLogin;
     }
 }

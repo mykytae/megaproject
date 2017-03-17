@@ -19,17 +19,17 @@ public class BankAccount {
     @Id
     @GeneratedValue
     @Column(name = "ID")
-    int id;
+    private int id;
 
     @GeneratedValue
     @Column(name = "ACCOUNT_NUMBER")
-    int accountNumber;
+    private int accountNumber;
 
     @Column(name = "ACCOUNT_VALUE")
-    double accountValue;
+    private double accountValue;
 
     @Column(name = "USER_ID")
-    int userId;
+    private int userId;
 
     public int getId() {
         return id;
