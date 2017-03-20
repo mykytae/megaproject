@@ -25,25 +25,24 @@ import java.util.List;
 @RequestMapping("/")
 public class MainController {
 
-    @Autowired
-    static BankAccountService bankAccountService;
-
-    @Autowired
-    static UserService userService;
-
-    @Autowired
-    static UserDetailsServiceImpl userDetailsService;
-
-    @Autowired
-    static RoleService roleService;
-
-    @Autowired
-    static HistoryService historyService;
-
     static final String ROLE_ADMIN = "ROLE_ADMIN";
     static final String ROLE_USER = "ROLE_USER";
-    static final int userHomeId = userDetailsService.getUserLoginId();
     private static final double startBalanceOfMoney = 0.0;
+
+    @Autowired
+    BankAccountService bankAccountService;
+
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    UserDetailsServiceImpl userDetailsService;
+
+    @Autowired
+    RoleService roleService;
+
+    @Autowired
+    HistoryService historyService;
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String goToSignUpPage(ModelMap model) {
@@ -52,11 +51,15 @@ public class MainController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView goToHomePage() {
+        int userHomeId = userDetailsService.getUserLoginId();
         ModelAndView model = new ModelAndView();
 
         User user = userService.findById(userHomeId);
+
         BankAccount bankAccount = bankAccountService.findByUserId(userHomeId);
+
         Role role = roleService.findByUserId(userHomeId);
+
         List<History> historyList = historyService.findByUserId(userHomeId);
 
         model.addObject("role", role);
@@ -66,11 +69,12 @@ public class MainController {
         model.addObject("name", user.getName());
         model.addObject("surname", user.getSurname());
         model.setViewName("user");
+
         return model;
     }
 
     /*
-    This method creates the new User with ROLE_USER, new AccountNumber and start balance.
+    This method creates the new User (with ROLE_USER), new AccountNumber and start balance.
      */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ModelAndView doRegistration(@RequestParam("login") String login,
@@ -84,22 +88,20 @@ public class MainController {
             model.setViewName("registration");
             return model;
         }
+        User createdUser = userService.create(new User(login, password, name, surname, email));
+        int createdUserId = createdUser.getId();
 
-        User user = new User(login, password, name, surname, email);
-        User createdUser = userService.create(user);
-
-        Role role = new Role(ROLE_USER, createdUser.getId());
-        roleService.create(role);
+        roleService.create(new Role(ROLE_USER, createdUserId));
 
         List<BankAccount> bankList = bankAccountService.findList();
-        int temp = bankList.get(0).getAccountNumber();
+        int maxAccountNumber = bankList.get(0).getAccountNumber();
         for (BankAccount bankAccount : bankList) {
-            if (bankAccount.getAccountNumber() > temp) {
-                temp = bankAccount.getAccountNumber();
+            int tempAccountNumber = bankAccount.getAccountNumber();
+            if (tempAccountNumber > maxAccountNumber) {
+                maxAccountNumber = tempAccountNumber;
             }
         }
-        BankAccount bankAccount = new BankAccount(temp + 1, startBalanceOfMoney, createdUser.getId());
-        bankAccountService.save(bankAccount);
+        bankAccountService.save(new BankAccount(maxAccountNumber + 1, startBalanceOfMoney, createdUserId));
 
         model.addObject("success", "You was successful registered ! Please, SIGN IN.");
         model.setViewName("login");
@@ -109,10 +111,12 @@ public class MainController {
     @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
     public ModelAndView logIn(@RequestParam(value = "error", required = false) String error) {
         ModelAndView model = new ModelAndView();
+
         if (error != null) {
             error = "Your username or password is incorrect!";
             model.addObject("error", error);
         }
+
         model.setViewName("login");
         return model;
     }
@@ -124,7 +128,7 @@ public class MainController {
         if (userCheckLogin != null && userCheckEmail != null) {
             model.addObject("errorLogin", "Your login already exsists!");
             model.addObject("errorEmail", "This email already uses!");
-            return  model;
+            return model;
         } else if (userCheckLogin != null) {
             model.addObject("errorLogin", "Your login already exsists!");
             model.setViewName("registration");
@@ -134,6 +138,6 @@ public class MainController {
             model.setViewName("registration");
             return model;
         }
-        return  model;
+        return model;
     }
 }
