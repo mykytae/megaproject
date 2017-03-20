@@ -45,7 +45,6 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/add", method = RequestMethod.GET)
     public ModelAndView updateUser(@RequestParam(value = "admin", required = false) String changeRole,
-                                   @RequestParam("login") String login,
                                    @RequestParam("name") String name,
                                    @RequestParam("surname") String surname,
                                    @RequestParam("email") String email,
@@ -59,7 +58,6 @@ public class AdminController {
 
         User user = new User();
         user.setId(id);
-        user.setLogin(login);
         user.setName(name);
         user.setSurname(surname);
         user.setEmail(email);

@@ -12,7 +12,6 @@
         <%@ include file="css/table.css"%>
     </style>
 
-
 </head>
 
 <body>
@@ -74,21 +73,20 @@
                 <form action="${pageContext.servletContext.contextPath}/admin/add">
                     <tr>
                         <td>
-                            <input type="checkbox" value="${u.id}" name="admin">
+                            <input  type="checkbox" value="${u.id}" name="admin">
                         </td>
                         <td>
-                            <input type="input" class="control" value="${u.login}" placeholder="${u.login}"
-                                   name="login">
+                            ${u.login}
                         </td>
                         <td>
-                            <input type="input" class="control" value="${u.name}" placeholder="${u.name}" name="name">
+                            <input type="input" class="control" value="${u.name}" placeholder="${'empty field!'}" name="name">
                         </td>
                         <td>
-                            <input type="input" class="control" value="${u.surname}" placeholder="${u.surname}"
+                            <input type="input" class="control" value="${u.surname}" placeholder="${'empty field!'}"
                                    name="surname">
                         </td>
                         <td>
-                            <input type="input" class="control" value="${u.email}" placeholder="${u.email}"
+                            <input type="input" class="control" value="${u.email}" placeholder="${'empty field!'}"
                                    name="email">
                         </td>
 
@@ -114,7 +112,7 @@
                         </c:forEach>
 
                         <td>
-                            <button type="input" value="${u.id}" name="id">Save</button>
+                            <button class="button" type="input" value="${u.id}" name="id">Save</button>
                         </td>
                     </tr>
                 </form>
