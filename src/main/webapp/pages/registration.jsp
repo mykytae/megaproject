@@ -8,70 +8,7 @@
     <title>Registration</title>
 
     <SCRIPT LANGUAGE="JavaScript">
-
-        function srav() {
-            var error = document.getElementById('error');
-            submitButton = document.getElementById('okButton');
-            var pass = document.getElementById('pass');
-            var repeate = document.getElementById('repeatePass');
-            if (pass.value != repeate.value) {
-                submitButton.disabled = true;
-                error.innerHTML = "Password mismatch!!!";
-            }
-            else {
-                error.innerHTML = " ";
-                registration();
-            }
-        }
-
-        function registration() {
-            var login = document.getElementById('login');
-            var name = document.getElementById('name');
-            var surname = document.getElementById('surname');
-            var email = document.getElementById('email');
-            var pass = document.getElementById('pass');
-            var inputsSpan = document.getElementById('allInputs');
-            submitButton = document.getElementById('okButton');
-
-            if (login.value.length == 0 | name.value.length == 0 | surname.value.length == 0 | email.value.length == 0 | pass.value.length == 0) {
-                submitButton.disabled = true;
-                inputsSpan.innerHTML = "There are empty fields!";
-            }
-            else {
-                inputsSpan.innerHTML = "";
-                submitButton.disabled = false;
-            }
-        }
-
-        function loginCheck() {
-            var loginSpan = document.getElementById('loginSpan');
-            var login = document.getElementById('login');
-            submitButton = document.getElementById('okButton');
-
-            if (login.value.length < 5 || login.value.length > 25) {
-                submitButton.disabled = true;
-                loginSpan.innerHTML = "Incorrect login length!";
-            }
-            else {
-                loginSpan.innerHTML = "";
-                registration();
-            }
-        }
-
-        function nameCheck() {
-            var name = document.getElementById('name');
-            submitButton = document.getElementById('okButton');
-            var nameSpan = document.getElementById('nameSpan');
-            if (name.value.length < 2 || name.value.length > 28) {
-                submitButton.disabled = true;
-                nameSpan.innerHTML = "Incorrect name length!";
-            }
-            else {
-                registration();
-                nameSpan.innerHTML = "";
-            }
-        }
-
+        <%@ include file="js/registration.js" %>
     </script>
 
     <style>
@@ -116,12 +53,12 @@
             <div class="input-group input-group-lg">
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                 <input type="password" class="form-control" id="pass" placeholder="Create your password" name="password"
-                       onchange="srav()">
+                       onchange="comparePasswords()">
             </div>
             <div class="input-group input-group-lg">
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                 <input type="password" class="form-control" placeholder="Repeate your password" id="repeatePass"
-                       onchange="srav()">
+                       onchange="comparePasswords()">
             </div>
             <span id="error" class="error"></span>
 
@@ -130,7 +67,6 @@
                     onmouseover="registration()">Ok
             </button>
         </form>
-
 
         <p>
         <form action="${pageContext.servletContext.contextPath}/">

@@ -31,14 +31,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         UserDetails result = null;
 
         User user = userService.findByLogin(login);
-        if(user==null){
+        if (user == null) {
             return result;
         }
 
-        this.userIdLogin=user.getId();
+        this.userIdLogin = user.getId();
 
         Role role = roleService.findByUserId(userIdLogin);
-        if (role==null){
+        if (role == null) {
             return result;
         }
 
