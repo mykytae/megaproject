@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "USER")
+@Table(name = "USER_TABLE")
 public class User {
 
     public User(String login, String password, String name, String surname, String email) {

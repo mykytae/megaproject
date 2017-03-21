@@ -1,1 +1,1 @@
-web:    java $JAVA_OPTS  -DTOPJAVA_ROOT="." -jar target/dependency/webapp-runner.jar target/*.war --port $PORT target/*.war-Dspring.profiles.active="datajpa,heroku"
+web:    java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT target/*.war
