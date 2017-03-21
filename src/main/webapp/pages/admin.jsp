@@ -6,9 +6,6 @@
 
     <style>
         <%@ include file="css/admin.css"%>
-    </style>
-
-    <style>
         <%@ include file="css/table.css"%>
     </style>
 
@@ -73,21 +70,23 @@
                 <form action="${pageContext.servletContext.contextPath}/admin/add">
                     <tr>
                         <td>
-                            <input  type="checkbox" value="${u.id}" name="admin">
+                            <input type="checkbox" value="${u.id}" name="admin">
                         </td>
                         <td>
-                            ${u.login}
+                            <input type="input" class="control" value="${u.login}" readonly
+                                   name="login" id="login">
                         </td>
                         <td>
-                            <input type="input" class="control" value="${u.name}" placeholder="${'empty field!'}" name="name">
+                            <input type="input" class="control" value="${u.name}" placeholder="${'empty field!'}"
+                                   name="name" id="name">
                         </td>
                         <td>
                             <input type="input" class="control" value="${u.surname}" placeholder="${'empty field!'}"
-                                   name="surname">
+                                   name="surname" id="surname">
                         </td>
                         <td>
                             <input type="input" class="control" value="${u.email}" placeholder="${'empty field!'}"
-                                   name="email">
+                                   name="email" id="email">
                         </td>
 
                         <c:forEach items="${bankList}" var="b" varStatus="status">
@@ -112,7 +111,9 @@
                         </c:forEach>
 
                         <td>
-                            <button class="button" type="input" value="${u.id}" name="id">Save</button>
+                            <button type="submit" class="button" type="input" value="${u.id}" name="id" id="submit">
+                                Save
+                            </button>
                         </td>
                     </tr>
                 </form>
