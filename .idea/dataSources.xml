@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="H2 - db" uuid="23d8a087-9896-42a1-bc33-8fa6902f646e">
+      <driver-ref>h2.unified</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.h2.Driver</jdbc-driver>
+      <jdbc-url>jdbc:h2:file:D:/db</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="PostgreSQL - df618k7lc9vvtq@ec2-54-75-249-162.eu-west-1.compute.amazonaws.com" uuid="ce0f7d5d-91ab-42ea-af3a-5f4bd9ff1d66">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://ec2-54-75-249-162.eu-west-1.compute.amazonaws.com:5432/df618k7lc9vvtq</jdbc-url>
+      <driver-properties>
+        <property name="ssl" value="true" />
+        <property name="sslfactory" value="org.postgresql.ssl.NonValidatingFactory" />
+      </driver-properties>
+    </data-source>
+  </component>
+</project>
