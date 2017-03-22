@@ -3,16 +3,19 @@
 <html>
 
 <head>
-
     <title>MEGAPROJECT</title>
     <style>
         <%@ include file="css/style.css" %>
     </style>
+
+    <SCRIPT LANGUAGE="JavaScript">
+        <%@ include file="js/login.js" %>
+    </script>
 </head>
 
-<body>
+<body onmousemove="startApp()">
 
-<div class="login" onmousemove="startApp()">
+<div class="login">
     <h1>Megaproject Payments</h1>
     <div class="heading">
         <h2>Sign in</h2>

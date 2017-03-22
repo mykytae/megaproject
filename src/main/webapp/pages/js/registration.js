@@ -1,16 +1,10 @@
-function startApp(){
-    alert("LOGIN : root" +
-        "\nPASSWORD : root" +
-        "\n for admin page!")
-}
-
 function comparePasswords() {
     var error = document.getElementById('error');
     submitButton = document.getElementById('okButton');
     var pass = document.getElementById('pass');
     var repeate = document.getElementById('repeatePass');
 
-    if (pass.value > 29) {
+    if (pass.value.length > 29) {
         submitButton.disabled = true;
         error.innerHTML = "Password should be less than 30 symbs";
     }
