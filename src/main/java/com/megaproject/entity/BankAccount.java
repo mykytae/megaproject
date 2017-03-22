@@ -17,11 +17,10 @@ public class BankAccount {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private int id;
 
-    @GeneratedValue
     @Column(name = "ACCOUNT_NUMBER")
     private int accountNumber;
 

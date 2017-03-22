@@ -52,6 +52,10 @@ public class AdminController {
                                    @RequestParam("id") int id) {
         ModelAndView model = new ModelAndView();
 
+        name = name.length() > 30 ? cutParameter(name, 30) : name;
+        surname = surname.length() > 30 ? cutParameter(surname, 30) : surname;
+        email = email.length() > 60 ? cutParameter(email, 60) : email;
+
         if (changeRole != null) {
             Role role = roleService.findByUserId(id);
             roleService.update(role, MainController.ROLE_ADMIN);
@@ -67,5 +71,9 @@ public class AdminController {
 
         model.setViewName("redirect:/admin");
         return model;
+    }
+
+    static String cutParameter(String parameter, int length) {
+        return parameter.substring(0, length);
     }
 }

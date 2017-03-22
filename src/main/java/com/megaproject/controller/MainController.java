@@ -84,6 +84,9 @@ public class MainController {
                                        @RequestParam("password") String password) {
         ModelAndView model = new ModelAndView();
 
+        surname = surname.length() > 30 ? AdminController.cutParameter(surname, 30) : surname;
+        email = email.length() > 60 ? AdminController.cutParameter(email, 60) : email;
+
         if (!(model = isUserDataCorrect(model, login, email)).isEmpty()) {
             model.setViewName("registration");
             return model;

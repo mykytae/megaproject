@@ -3,12 +3,22 @@ function comparePasswords() {
     submitButton = document.getElementById('okButton');
     var pass = document.getElementById('pass');
     var repeate = document.getElementById('repeatePass');
+
+    if (pass.value > 29) {
+        submitButton.disabled = true;
+        error.innerHTML = "Password should be less than 30 symbs";
+    }
+    else {
+        error.innerHTML = "";
+        registration();
+    }
+
     if (pass.value != repeate.value) {
         submitButton.disabled = true;
         error.innerHTML = "Password mismatch!!!";
     }
     else {
-        error.innerHTML = " ";
+        error.innerHTML = "";
         registration();
     }
 }

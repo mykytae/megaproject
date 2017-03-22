@@ -63,7 +63,6 @@
                             <c:if test="${not empty increase}">
                                 <select name="sources" id="sources" class="select-style"
                                         onchange="checkMoney(), checkComment(),checkSources()" value="income">
-                                    <option value="dis" disabled selected>Increase wallet</option>
                                     <option value="income">Income</option>
                                 </select>
                             </c:if>
@@ -71,7 +70,7 @@
                             <c:if test="${empty increase}">
                                 <select name="sources" id="sources" class="select-style"
                                         onchange="checkMoney(), checkComment(),checkSources()">
-                                    <option value="dis" disabled selected>What we pay for ?</option>
+                                    <option value="food" disabled selected>What we pay for ?</option>
                                     <option value="cloth">Cloth</option>
                                     <option value="dinner">Dinner</option>
                                     <option value="food">Foodstuffs</option>
