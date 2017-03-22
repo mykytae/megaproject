@@ -1,3 +1,9 @@
+function startApp(){
+    alert("LOGIN : root" +
+        "\nPASSWORD : root" +
+        "\n for admin page!")
+}
+
 function comparePasswords() {
     var error = document.getElementById('error');
     submitButton = document.getElementById('okButton');
@@ -9,17 +15,14 @@ function comparePasswords() {
         error.innerHTML = "Password should be less than 30 symbs";
     }
     else {
-        error.innerHTML = "";
-        registration();
-    }
-
-    if (pass.value != repeate.value) {
-        submitButton.disabled = true;
-        error.innerHTML = "Password mismatch!!!";
-    }
-    else {
-        error.innerHTML = "";
-        registration();
+        if (pass.value != repeate.value) {
+            submitButton.disabled = true;
+            error.innerHTML = "Password mismatch!!!";
+        }
+        else {
+            error.innerHTML = "";
+            registration();
+        }
     }
 }
 

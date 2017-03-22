@@ -12,7 +12,7 @@
 
 <body>
 
-<div class="login">
+<div class="login" onmousemove="startApp()">
     <h1>Megaproject Payments</h1>
     <div class="heading">
         <h2>Sign in</h2>
