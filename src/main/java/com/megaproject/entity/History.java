@@ -23,8 +23,7 @@ public class History {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="ID_seq")
-    @SequenceGenerator(name="ID_seq", sequenceName="ID_seq", allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private int id;
 
