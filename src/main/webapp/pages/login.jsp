@@ -13,7 +13,7 @@
     </script>
 </head>
 
-<body onmousemove="startApp()">
+<body onload="startApp()">
 
 <div class="login">
     <h1>Megaproject Payments</h1>
